@@ -6,11 +6,11 @@
   "module": "dist/index.esm.js",
   "source": "src/index.js",
   "scripts": {
-    "build": "rollup -c",
-    "build-watch": "rollup -c -w",
-    "start-playground": "cd playground && npm run start",
-    "i-all": "yarn install && cd playground && yarn install",
+    "i-all": "yarn install && yarn build && cd playground && yarn install",
     "dev": "npm-run-all --parallel build-watch start-playground",
+    "build": "NODE_ENV=production && rollup -c",
+    "build-watch": "NODE_ENV=development && rollup -c -w",
+    "start-playground": "cd playground && npm run start",
     "lint:css": "stylelint './src/**/*.{js,jsx}'",
     "lint:js": "eslint src --ext js,jsx",
     "lint:js:fix": "eslint src --ext js,jsx --fix",
@@ -21,13 +21,7 @@
     "lint:css",
     "lint:js"
   ],
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "react-scripts": "4.0.3",
-    "styled-components": "^5.3.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
