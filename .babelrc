@@ -1,0 +1,30 @@
+{
+  "env": {
+    "development": {
+      "presets": ["@babel/env", "@babel/preset-react"],
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          {
+            "namespace": "ice-cube",
+            "minify": false,
+            "transpileTemplateLiterals": false
+          }
+        ]
+      ]
+    },
+    "production": {
+      "presets": ["@babel/env", "@babel/preset-react"],
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          {
+            "namespace": "ice-cube",
+            "displayName": false,
+            "pure": true
+          }
+        ]
+      ]
+    }
+  }
+}
