@@ -14,7 +14,7 @@
     "lint:css": "stylelint './src/**/*.{js,jsx}'",
     "lint:js": "eslint src --ext js,jsx",
     "lint:js:fix": "eslint src --ext js,jsx --fix",
-    "precommit-msg": "echo 'Executing pre-commit commands' && exit 0"
+    "precommit-msg": "echo 'Executing pre-commit process' && exit 0"
   },
   "pre-commit": [
     "precommit-msg",
