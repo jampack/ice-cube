@@ -42,7 +42,13 @@ const button = {
     lg: '40px',
     xl: '45px',
   },
-  paddingX: '15px',
+  btnPaddingX: {
+    default: '15px',
+    xs: '0',
+    sm: '10px',
+    lg: '20px',
+    xl: '35px',
+  },
   borderRadius: globals.inputBorderRadius,
   shadow: globals.inputBoxShadow,
 };

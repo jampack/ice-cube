@@ -7,15 +7,15 @@ function App() {
       <div className='container-fluid'>
         <div className='row'>
           {/*<img src={iceCubeLogo} alt='ice-cube-logo' style={{width: '100px'}} />*/}
-          <Button size='xs'>extra small</Button>
+          <Button size='xs'>xs</Button>
           <hr style={{margin: '10px'}}/>
-          <Button size='sm'>small</Button>
+          <Button size='sm'>sm</Button>
           <hr style={{margin: '10px'}}/>
-          <Button>default</Button>
+          <Button>de</Button>
           <hr style={{margin: '10px'}}/>
-          <Button size='lg'>large</Button>
+          <Button size='lg'>lg</Button>
           <hr style={{margin: '10px'}}/>
-          <Button size='xl'>extra large</Button>
+          <Button size='xl'>xl</Button>
           <hr style={{margin: '10px'}}/>
           <hr style={{margin: '10px'}}/>
           <hr style={{margin: '10px'}}/>

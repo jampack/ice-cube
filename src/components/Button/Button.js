@@ -16,7 +16,7 @@ const Button = (props) => {
       bordered={bordered}
       fab={fab}
       color={color}>
-      <ButtonBody classNamr='ic-button-body' icon={icon}>
+      <ButtonBody className='ic-button-body' icon={icon} size={size}>
         {children}
       </ButtonBody>
     </StyledButton>
@@ -37,7 +37,7 @@ Button.propTypes = {
 Button.defaultProps = {
   children: '',
   variant: 'default',
-  size: '',
+  size: null,
   raised: false,
   icon: false,
   bordered: false,

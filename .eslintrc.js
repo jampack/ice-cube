@@ -13,6 +13,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     'react/jsx-filename-extension': 'off',
     'import/no-unresolved': ['error', { ignore: Object.keys(peerDependencies) }],
+    'no-underscore-dangle': 'off',
   },
   parserOptions: {
     ecmaVersion: 2021,

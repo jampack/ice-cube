@@ -2,7 +2,7 @@ import theme from 'styled-theming';
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-const btnBackgroundColor = theme.variants('mode', 'variant', {
+const _btnBackgroundColor = theme.variants('mode', 'variant', {
   default: {
     light: (p) => p.theme.button.backgroundColor.default.light,
     dark: (p) => p.theme.button.backgroundColor.default.dark,
@@ -33,36 +33,57 @@ const btnBackgroundColor = theme.variants('mode', 'variant', {
   },
 });
 
-const btnTextColor = theme('mode', {
+const calcBtnTextColor = theme('mode', {
   light: (p) => p.theme.button.textColor.light,
   dark: (p) => p.theme.button.textColor.dark,
 });
 
-const btnHeight = ({ size, ...props }) => {
+const calcBtnHeight = ({ size, ...p }) => {
   switch (size) {
     case 'xs':
     case 'extraSmall':
-      return props.theme.button.btnHeight.xs;
+      return p.theme.button.btnHeight.xs;
     case 'sm':
     case 'small':
-      return props.theme.button.btnHeight.sm;
+      return p.theme.button.btnHeight.sm;
     case 'lg':
     case 'large':
-      return props.theme.button.btnHeight.lg;
+      return p.theme.button.btnHeight.lg;
     case 'xl':
     case 'extraLarge':
-      return props.theme.button.btnHeight.xl;
+      return p.theme.button.btnHeight.xl;
     default:
-      return props.theme.button.btnHeight.default;
+      return p.theme.button.btnHeight.default;
   }
 };
 
-const calcBtnBackgroundColor = (props) => {
-  if (props.color) return props.color;
-  if (props.icon) return '#f5f5f5';
+const calcBtnBackgroundColor = ({ color, icon, ...p }) => {
+  if (color) return color;
+  if (icon) return '#f5f5f5';
 
-  const backgroundColor = btnBackgroundColor(props);
+  const backgroundColor = _btnBackgroundColor(p);
   return backgroundColor || '#f5f5f5';
+};
+
+const calcHorizontalPadding = ({ icon, size, ...p }) => {
+  if (icon) return '0';
+
+  switch (size) {
+    case 'xs':
+    case 'extraSmall':
+      return `0 ${p.theme.button.btnPaddingX.xs}`;
+    case 'sm':
+    case 'small':
+      return `0 ${p.theme.button.btnPaddingX.sm}`;
+    case 'lg':
+    case 'large':
+      return `0 ${p.theme.button.btnPaddingX.lg}`;
+    case 'xl':
+    case 'extraLarge':
+      return `0 ${p.theme.button.btnPaddingX.xl}`;
+    default:
+      return `0 ${p.theme.button.btnPaddingX.default}`;
+  }
 };
 
 export const StyledButton = styled.div`
@@ -71,29 +92,28 @@ export const StyledButton = styled.div`
   align-items: center;
   min-width: 20px;
   width: fit-content;
-  height: ${(props) => btnHeight(props)};
+  height: ${(p) => calcBtnHeight(p)};
   cursor: pointer;
   background-color: ${() => calcBtnBackgroundColor};
-  border: ${({ bordered, ...props }) =>
-    bordered ? `1.5px solid ${darken(0.1, calcBtnBackgroundColor(props))}` : 'none'};
-  border-radius: ${({ fab, ...props }) => (fab ? '50%' : props.theme.button.borderRadius)};
+  border: ${({ bordered, ...p }) => (bordered ? `1.5px solid ${darken(0.1, calcBtnBackgroundColor(p))}` : 'none')};
+  border-radius: ${({ fab, ...p }) => (fab ? '50%' : p.theme.button.borderRadius)};
 
   box-shadow: ${(p) => p.theme.button.shadow};
 
   &:hover {
-    background: ${(props) => darken(0.05, calcBtnBackgroundColor(props))};
+    background: ${(p) => darken(0.05, calcBtnBackgroundColor(p))};
   }
 
   &:active {
-    background-color: ${({ raised, ...props }) => (!raised ? darken(0.1, calcBtnBackgroundColor(props)) : '')};
+    background-color: ${({ raised, ...p }) => (!raised ? darken(0.1, calcBtnBackgroundColor(p)) : '')};
     box-shadow: ${({ raised }) => (raised ? '0 0 #fff' : '')};
     transform: translateY(${({ raised }) => (raised ? '1.5px' : '')});
   }
 `;
 
 export const ButtonBody = styled.span`
-  padding: ${({ icon, ...props }) => (icon ? '0' : `0 ${props.theme.button.paddingX}`)};
-  color: ${btnTextColor};
+  padding: ${(p) => calcHorizontalPadding(p)};
+  color: ${calcBtnTextColor};
   font-size: 14px;
   font-weight: 400;
   font-family: 'Roboto', sans-serif;
