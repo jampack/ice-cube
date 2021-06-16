@@ -3,6 +3,18 @@ const { peerDependencies } = require('./package.json');
 module.exports = {
   extends: ['airbnb', 'prettier', 'standard-react', 'plugin:prettier/recommended'],
   plugins: ['prettier'],
+  settings: {
+    react: {
+      version: '^17.0.2',
+    },
+  },
+  parserOptions: {
+    ecmaVersion: 2021,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   rules: {
     'prettier/prettier': 'error',
     'no-unused-vars': 'warn',
@@ -14,12 +26,6 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'import/no-unresolved': ['error', { ignore: Object.keys(peerDependencies) }],
     'no-underscore-dangle': 'off',
-  },
-  parserOptions: {
-    ecmaVersion: 2021,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };
