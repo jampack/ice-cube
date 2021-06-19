@@ -1,11 +1,19 @@
-import React from 'react';
-import {  Button } from 'ice-cube/components';
+import React, {useState} from 'react';
+import {  Button, Checkbox } from 'ice-cube/components';
 
 function App() {
+
+  const [checkbox, setCheckbox] = useState(true)
   return (
     <div className="App">
       <div className='container-fluid'>
         <div className='row'>
+          <Checkbox value={checkbox} onChange={(r) => setCheckbox(r)}>One</Checkbox>
+          <Checkbox value={checkbox} onChange={(r) => setCheckbox(r)}>One</Checkbox>
+          <Checkbox value={checkbox} onChange={(r) => setCheckbox(r)}>One</Checkbox>
+          <Checkbox value={checkbox} onChange={(r) => setCheckbox(r)}>One</Checkbox>
+
+          <hr style={{margin: '10px'}}/>
           {/*<img src={iceCubeLogo} alt='ice-cube-logo' style={{width: '100px'}} />*/}
           <Button size='xs'>xs</Button>
           <hr style={{margin: '10px'}}/>

@@ -11,6 +11,7 @@
     "build": "NODE_ENV=production && rollup -c",
     "build-watch": "NODE_ENV=development && rollup -c -w",
     "start-playground": "cd playground && npm run start",
+    "lint": "yarn lint:js && yarn lint:css",
     "lint:css": "stylelint './src/**/*.{js,jsx}'",
     "lint:js": "eslint src --ext js,jsx",
     "lint:js:fix": "eslint src --ext js,jsx --fix",
