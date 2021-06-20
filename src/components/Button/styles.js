@@ -57,7 +57,11 @@ const calcBtnHeight = ({ size, ...p }) => {
   }
 };
 
-const calcMinWidth = ({ size, ...p }) => {
+const calcMinWidth = ({ size, fab, ...p }) => {
+  if (fab) {
+    return calcBtnHeight({ size, ...p });
+  }
+
   switch (size) {
     case 'xs':
     case 'extraSmall':
@@ -105,13 +109,51 @@ const calcHorizontalPadding = ({ icon, size, ...p }) => {
   }
 };
 
+const calcBtnFontSize = ({ size, ...p }) => {
+  switch (size) {
+    case 'xs':
+    case 'extraSmall':
+      return p.theme.button.fontSize.xs;
+    case 'sm':
+    case 'small':
+      return p.theme.button.fontSize.sm;
+    case 'lg':
+    case 'large':
+      return p.theme.button.fontSize.lg;
+    case 'xl':
+    case 'extraLarge':
+      return p.theme.button.fontSize.xl;
+    default:
+      return p.theme.button.fontSize.default;
+  }
+};
+
+const calcBtnFontWeight = ({ size, ...p }) => {
+  switch (size) {
+    case 'xs':
+    case 'extraSmall':
+      return p.theme.button.fontWeight.xs;
+    case 'sm':
+    case 'small':
+      return p.theme.button.fontWeight.sm;
+    case 'lg':
+    case 'large':
+      return p.theme.button.fontWeight.lg;
+    case 'xl':
+    case 'extraLarge':
+      return p.theme.button.fontWeight.xl;
+    default:
+      return p.theme.button.fontWeight.default;
+  }
+};
+
 export const StyledButton = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: ${(p) => calcMinWidth(p)};
-  max-width: fit-content;
   height: ${(p) => calcBtnHeight(p)};
+  min-width: ${(p) => calcMinWidth(p)};
+  max-width: ${(p) => (p.fab ? calcBtnHeight(p) : 'fit-content')};
   background-color: ${() => calcBtnBackgroundColor};
   border: ${({ bordered, ...p }) => (bordered ? `1.5px solid ${darken(0.1, calcBtnBackgroundColor(p))}` : 'none')};
   border-radius: ${({ fab, ...p }) => (fab ? '50%' : p.theme.button.borderRadius)};
@@ -133,8 +175,8 @@ export const StyledButton = styled.div`
 export const ButtonBody = styled.span`
   padding: ${(p) => calcHorizontalPadding(p)};
   color: ${calcBtnTextColor};
-  font-size: 14px;
-  font-weight: 400;
-  font-family: 'Roboto', sans-serif;
+  font-size: ${(p) => calcBtnFontSize(p)};
+  font-weight: ${(p) => calcBtnFontWeight(p)};
+  font-family: ${({ theme: { button } }) => button.fontFamily};
   user-select: none;
 `;

@@ -56,6 +56,21 @@ const button = {
     lg: '20px',
     xl: '35px',
   },
+  fontSize: {
+    default: globals.fontSize,
+    xs: globals.fontSize,
+    sm: globals.fontSize,
+    lg: globals.fontSize,
+    xl: globals.fontSize,
+  },
+  fontWeight: {
+    default: globals.fontWeight,
+    xs: globals.fontWeight,
+    sm: globals.fontWeight,
+    lg: globals.fontWeight,
+    xl: globals.fontWeight,
+  },
+  fontFamily: globals.fontFamily,
   borderRadius: globals.borderRadius,
   shadow: globals.shadow,
 };
