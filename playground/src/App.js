@@ -1,13 +1,22 @@
 import React, {useState} from 'react';
-import {  Button, Checkbox } from 'ice-cube/components';
+import {  Button, Checkbox, CheckboxGroup } from 'ice-cube/components';
+
 
 function App() {
 
   const [checkbox, setCheckbox] = useState(true)
+  const [checkboxGroup, setCheckboxGroup] = useState([])
+  const checkboxItems = [{id: 1, name: 'item1 1122 3344 5566'},{id: 2, name: 'item2'},{id: 3, name: 'item3'}]
+
   return (
     <div className="App">
       <div className='container-fluid'>
         <div className='row'>
+          <div className='col-3'>
+            <CheckboxGroup data={checkboxItems} value={checkboxGroup} onChange={(r) => setCheckboxGroup([...r])}/>
+          </div>
+
+          <hr style={{margin: '10px'}}/>
           <Checkbox value={checkbox} onChange={(r) => setCheckbox(r)}>One</Checkbox>
           <Checkbox value={checkbox} onChange={(r) => setCheckbox(r)}>One</Checkbox>
           <Checkbox value={checkbox} onChange={(r) => setCheckbox(r)}>One</Checkbox>

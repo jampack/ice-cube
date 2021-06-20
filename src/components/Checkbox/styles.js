@@ -36,7 +36,7 @@ export const StyledLabel = styled.label`
 export const StyledCheckbox = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: end;
+  align-items: center;
   height: 23px;
   position: relative;
   padding-left: 30px;
@@ -44,20 +44,20 @@ export const StyledCheckbox = styled.div`
   cursor: pointer;
   user-select: none;
 
-  &:hover ${/* sc-selector */ StyledInput} ~ ${/* sc-selector */ StyledCheckmark} {
+  &:hover ${/* sc-sel */ StyledInput} ~ ${/* sc-sel */ StyledCheckmark} {
     background-color: ${/* sc-value */ darken(0.1, '#f5f5f5')};
   }
 
-  ${/* sc-selector */ StyledInput}:checked ~ ${/* sc-selector */ StyledCheckmark} {
+  ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark} {
     background-color: #2196f3;
     border: ${() => `1.5px solid ${darken(0.2, '#2196f3')}`};
   }
 
-  ${/* sc-selector */ StyledInput}:checked ~ ${/* sc-selector */ StyledCheckmark}:after {
+  ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark}:after {
     display: block;
   }
 
-  ${/* sc-selector */ StyledCheckmark}:after {
+  ${/* sc-sel */ StyledCheckmark}:after {
     left: 5px;
     top: 1px;
     width: 5px;
