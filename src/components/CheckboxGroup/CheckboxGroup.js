@@ -22,17 +22,14 @@ function CheckboxGroup(props) {
 
   return (
     <StyledCheckboxGroup horizontal={horizontal}>
-      {data.map((d) => {
-        console.log(value, d[dataValue], value.includes(d[dataValue]));
-        return (
-          <Checkbox
-            key={d[dataValue]}
-            value={value.includes(d[dataValue])}
-            onChange={(r) => handleChange(d[dataValue], r)}>
-            {d[dataText]}
-          </Checkbox>
-        );
-      })}
+      {data.map((d) => (
+        <Checkbox
+          key={d[dataValue]}
+          value={value.includes(d[dataValue])}
+          onChange={(r) => handleChange(d[dataValue], r)}>
+          {d[dataText]}
+        </Checkbox>
+      ))}
     </StyledCheckboxGroup>
   );
 }

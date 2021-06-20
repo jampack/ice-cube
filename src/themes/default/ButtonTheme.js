@@ -42,6 +42,13 @@ const button = {
     lg: '40px',
     xl: '45px',
   },
+  btnMinWidth: {
+    default: '80px',
+    xs: '50px',
+    sm: '65px',
+    lg: '95px',
+    xl: '110px',
+  },
   btnPaddingX: {
     default: '15px',
     xs: '0',
@@ -49,8 +56,8 @@ const button = {
     lg: '20px',
     xl: '35px',
   },
-  borderRadius: globals.inputBorderRadius,
-  shadow: globals.inputBoxShadow,
+  borderRadius: globals.borderRadius,
+  shadow: globals.shadow,
 };
 
 export default button;

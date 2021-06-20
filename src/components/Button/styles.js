@@ -57,6 +57,25 @@ const calcBtnHeight = ({ size, ...p }) => {
   }
 };
 
+const calcMinWidth = ({ size, ...p }) => {
+  switch (size) {
+    case 'xs':
+    case 'extraSmall':
+      return p.theme.button.btnMinWidth.xs;
+    case 'sm':
+    case 'small':
+      return p.theme.button.btnMinWidth.sm;
+    case 'lg':
+    case 'large':
+      return p.theme.button.btnMinWidth.lg;
+    case 'xl':
+    case 'extraLarge':
+      return p.theme.button.btnMinWidth.xl;
+    default:
+      return p.theme.button.btnMinWidth.default;
+  }
+};
+
 const calcBtnBackgroundColor = ({ color, icon, ...p }) => {
   if (color) return color;
   if (icon) return '#f5f5f5';
@@ -90,15 +109,15 @@ export const StyledButton = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 20px;
-  width: fit-content;
+  min-width: ${(p) => calcMinWidth(p)};
+  max-width: fit-content;
   height: ${(p) => calcBtnHeight(p)};
-  cursor: pointer;
   background-color: ${() => calcBtnBackgroundColor};
   border: ${({ bordered, ...p }) => (bordered ? `1.5px solid ${darken(0.1, calcBtnBackgroundColor(p))}` : 'none')};
   border-radius: ${({ fab, ...p }) => (fab ? '50%' : p.theme.button.borderRadius)};
-
   box-shadow: ${(p) => p.theme.button.shadow};
+
+  cursor: pointer;
 
   &:hover {
     background: ${(p) => darken(0.05, calcBtnBackgroundColor(p))};
