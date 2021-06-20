@@ -33,9 +33,9 @@ const _btnBackgroundColor = theme.variants('mode', 'variant', {
   },
 });
 
-const calcBtnTextColor = theme('mode', {
-  light: (p) => p.theme.button.textColor.light,
-  dark: (p) => p.theme.button.textColor.dark,
+const calcBtnFontColor = theme('mode', {
+  light: (p) => p.theme.button.fontColor.light,
+  dark: (p) => p.theme.button.fontColor.dark,
 });
 
 const calcBtnHeight = ({ size, ...p }) => {
@@ -174,7 +174,7 @@ export const StyledButton = styled.div`
 
 export const ButtonBody = styled.span`
   padding: ${(p) => calcHorizontalPadding(p)};
-  color: ${calcBtnTextColor};
+  color: ${(p) => calcBtnFontColor(p)};
   font-size: ${(p) => calcBtnFontSize(p)};
   font-weight: ${(p) => calcBtnFontWeight(p)};
   font-family: ${({ theme: { button } }) => button.fontFamily};

@@ -1,9 +1,9 @@
-import globals from './Globals';
+import global from './Global';
 
 const button = {
-  textColor: {
-    light: '#000',
-    dark: '#fff',
+  fontColor: {
+    light: global.fontColor.light,
+    dark: global.fontColor.dark,
   },
   backgroundColor: {
     default: {
@@ -11,12 +11,12 @@ const button = {
       dark: 'pink',
     },
     primary: {
-      light: '#84ceeb',
-      dark: 'pink',
+      light: global.colors.light.primary,
+      dark: global.colors.dark.primary,
     },
     secondary: {
-      light: '#5ab9ea',
-      dark: 'pink',
+      light: global.colors.light.secondary,
+      dark: global.colors.dark.secondary,
     },
     success: {
       light: '#99ced3',
@@ -36,7 +36,7 @@ const button = {
     },
   },
   btnHeight: {
-    default: globals.inputHeight,
+    default: global.inputHeight,
     xs: '25px',
     sm: '30px',
     lg: '40px',
@@ -57,22 +57,22 @@ const button = {
     xl: '35px',
   },
   fontSize: {
-    default: globals.fontSize,
-    xs: globals.fontSize,
-    sm: globals.fontSize,
-    lg: globals.fontSize,
-    xl: globals.fontSize,
+    default: global.fontSize,
+    xs: global.fontSize,
+    sm: global.fontSize,
+    lg: global.fontSize,
+    xl: global.fontSize,
   },
   fontWeight: {
-    default: globals.fontWeight,
-    xs: globals.fontWeight,
-    sm: globals.fontWeight,
-    lg: globals.fontWeight,
-    xl: globals.fontWeight,
+    default: global.fontWeight,
+    xs: global.fontWeight,
+    sm: global.fontWeight,
+    lg: global.fontWeight,
+    xl: global.fontWeight,
   },
-  fontFamily: globals.fontFamily,
-  borderRadius: globals.borderRadius,
-  shadow: globals.shadow,
+  fontFamily: global.fontFamily,
+  borderRadius: global.borderRadius,
+  shadow: global.shadow,
 };
 
 export default button;

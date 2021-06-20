@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import global from '../../themes/default/Global';
 
 export const StyledInput = styled.input`
   position: absolute;
@@ -13,10 +14,10 @@ export const StyledCheckmark = styled.span`
   position: absolute;
   top: 0;
   left: 0;
-  height: 17px;
-  width: 17px;
-  border: ${() => `1.5px solid ${darken(0.2, '#f5f5f5')}`};
-  border-radius: 3px;
+  height: ${({ theme: { checkbox } }) => checkbox.boxHeight};
+  width: ${({ theme: { checkbox } }) => checkbox.boxWidth};
+  border: ${({ theme: { checkbox } }) => `1.5px solid ${checkbox.unCheckedBorderColor}`};
+  border-radius: ${({ theme: { checkbox } }) => checkbox.borderRadius};
 
   &:after {
     content: '';
@@ -26,9 +27,10 @@ export const StyledCheckmark = styled.span`
 `;
 
 export const StyledLabel = styled.label`
-  font-size: 16px;
-  font-weight: 400;
-  font-family: 'Roboto', sans-serif;
+  font-size: ${({ theme: { checkbox } }) => checkbox.fontSize};
+  font-weight: ${({ theme: { checkbox } }) => checkbox.fontWeight};
+  font-family: ${({ theme: { checkbox } }) => checkbox.fontFamily};
+  color: ${({ theme: { checkbox } }) => checkbox.fontColor.light};
   user-select: none;
   cursor: pointer;
 `;
@@ -36,21 +38,22 @@ export const StyledLabel = styled.label`
 export const StyledCheckbox = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  height: 23px;
+  align-items: start;
+  height: ${({ theme: { checkbox } }) => checkbox.height};
   position: relative;
-  padding-left: 30px;
+  padding-left: ${({ theme: { checkbox } }) => checkbox.labelPaddingLeft};
+  margin: ${({ theme: { checkbox } }) => `${checkbox.verticalMargin} 0`};
   width: fit-content;
   cursor: pointer;
   user-select: none;
 
   &:hover ${/* sc-sel */ StyledInput} ~ ${/* sc-sel */ StyledCheckmark} {
-    background-color: ${/* sc-value */ darken(0.1, '#f5f5f5')};
+    border: ${/* sc-value */ `1.5px solid ${darken(0.1, global.colors.light.primary)}`};
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark} {
-    background-color: #2196f3;
-    border: ${() => `1.5px solid ${darken(0.2, '#2196f3')}`};
+    background-color: ${global.colors.light.primary};
+    border: ${() => `1.5px solid ${darken(0.2, global.colors.light.primary)}`};
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark}:after {
@@ -58,11 +61,11 @@ export const StyledCheckbox = styled.div`
   }
 
   ${/* sc-sel */ StyledCheckmark}:after {
-    left: 5px;
-    top: 1px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
+    left: ${({ theme: { checkbox } }) => checkbox.checkMarkMarginLeft};
+    top: ${({ theme: { checkbox } }) => checkbox.checkMarkMarginTop};
+    width: ${({ theme: { checkbox } }) => checkbox.checkMarkWidth};
+    height: ${({ theme: { checkbox } }) => checkbox.checkMarkHeight};
+    border: ${({ theme: { checkbox } }) => `solid ${checkbox.checkMarkColor}`};
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
   }
