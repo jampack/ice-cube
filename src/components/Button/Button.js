@@ -8,7 +8,8 @@ const Prepend = () => null;
 const Append = () => null;
 
 const Button = (props) => {
-  const { children, variant, size, raised, icon, bordered, fab, color, prepend, append } = props;
+  const { children, variant, size, raised, icon, bordered, fab, color, prepend, append, prependIcon, appendIcon } =
+    props;
 
   const childrenClone = wrapObjectInArray(children);
 
@@ -25,13 +26,15 @@ const Button = (props) => {
       bordered={bordered}
       fab={fab}
       color={color}>
-      {appendSlot && appendSlot.props.children}
-      {prepend}
+      {prependSlot && prependSlot.props.children}
+      {prependIcon && <span className={prependIcon} />}
+      {prepend && prepend}
       <ButtonBody className='ic-button-body' icon={icon} size={size}>
         {children}
       </ButtonBody>
-      {append}
-      {prependSlot && prependSlot.props.children}
+      {appendSlot && appendSlot.props.children}
+      {appendIcon && <span className={appendIcon} />}
+      {append && append}
     </StyledButton>
   );
 };
@@ -50,6 +53,8 @@ Button.propTypes = {
   color: PropTypes.string,
   prepend: PropTypes.node,
   append: PropTypes.node,
+  prependIcon: PropTypes.string,
+  appendIcon: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -63,6 +68,8 @@ Button.defaultProps = {
   color: null,
   prepend: null,
   append: null,
+  prependIcon: null,
+  appendIcon: null,
 };
 
 export default Button;

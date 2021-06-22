@@ -1,6 +1,31 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
-import global from '../../themes/default/Global';
+import theme from 'styled-theming';
+
+const calcUnCheckedBorderColor = theme('mode', {
+  light: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.light,
+  dark: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.dark,
+});
+
+const calcFontColor = theme('mode', {
+  light: ({ theme: { checkbox } }) => checkbox.fontColor.light,
+  dark: ({ theme: { checkbox } }) => checkbox.fontColor.dark,
+});
+
+const calcBoxHoverColor = theme('mode', {
+  light: ({ theme: { checkbox } }) => checkbox.boxHoverColor.light,
+  dark: ({ theme: { checkbox } }) => checkbox.boxHoverColor.dark,
+});
+
+const calcCheckedBackgroundColor = theme('mode', {
+  light: ({ theme: { checkbox } }) => checkbox.checkedBackgroundColor.light,
+  dark: ({ theme: { checkbox } }) => checkbox.checkedBackgroundColor.dark,
+});
+
+const calcCheckedBorderColor = theme('mode', {
+  light: ({ theme: { checkbox } }) => checkbox.checkedBorderColor.light,
+  dark: ({ theme: { checkbox } }) => checkbox.checkedBorderColor.dark,
+});
 
 export const StyledInput = styled.input`
   position: absolute;
@@ -16,7 +41,7 @@ export const StyledCheckmark = styled.span`
   left: 0;
   height: ${({ theme: { checkbox } }) => checkbox.boxHeight};
   width: ${({ theme: { checkbox } }) => checkbox.boxWidth};
-  border: ${({ theme: { checkbox } }) => `1.5px solid ${checkbox.unCheckedBorderColor}`};
+  border: ${(p) => `1.5px solid ${calcUnCheckedBorderColor(p)}`};
   border-radius: ${({ theme: { checkbox } }) => checkbox.borderRadius};
 
   &:after {
@@ -30,7 +55,7 @@ export const StyledLabel = styled.label`
   font-size: ${({ theme: { checkbox } }) => checkbox.fontSize};
   font-weight: ${({ theme: { checkbox } }) => checkbox.fontWeight};
   font-family: ${({ theme: { checkbox } }) => checkbox.fontFamily};
-  color: ${({ theme: { checkbox } }) => checkbox.fontColor.light};
+  color: ${(p) => calcFontColor(p)};
   user-select: none;
   cursor: pointer;
 `;
@@ -48,12 +73,12 @@ export const StyledCheckbox = styled.div`
   user-select: none;
 
   &:hover ${/* sc-sel */ StyledInput} ~ ${/* sc-sel */ StyledCheckmark} {
-    border: ${/* sc-value */ `1.5px solid ${darken(0.1, global.colors.light.primary)}`};
+    border: ${(p) => `1.5px solid ${darken(0.1, calcBoxHoverColor(p))}`};
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark} {
-    background-color: ${global.colors.light.primary};
-    border: ${() => `1.5px solid ${darken(0.2, global.colors.light.primary)}`};
+    background-color: ${(p) => calcCheckedBackgroundColor(p)};
+    border: ${(p) => `1.5px solid ${darken(0.1, calcCheckedBorderColor(p))}`};
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark}:after {

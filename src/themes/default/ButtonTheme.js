@@ -11,12 +11,12 @@ const button = {
       dark: 'pink',
     },
     primary: {
-      light: global.colors.light.primary,
-      dark: global.colors.dark.primary,
+      light: global.colors.primary.light,
+      dark: global.colors.primary.dark,
     },
     secondary: {
-      light: global.colors.light.secondary,
-      dark: global.colors.dark.secondary,
+      light: global.colors.secondary.light,
+      dark: global.colors.secondary.dark,
     },
     success: {
       light: '#99ced3',
