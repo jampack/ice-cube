@@ -48,7 +48,7 @@ Button.propTypes = {
   bordered: PropTypes.bool,
   fab: PropTypes.bool,
   color: PropTypes.string,
-  prepend: Prepend.node,
+  prepend: PropTypes.node,
   append: PropTypes.node,
 };
 
