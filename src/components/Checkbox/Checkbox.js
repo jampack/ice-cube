@@ -4,12 +4,18 @@ import PropTypes from 'prop-types';
 import { StyledCheckbox, StyledLabel, StyledInput, StyledCheckmark } from './styles';
 
 function Checkbox(props) {
-  const { children, value, onChange } = props;
+  const handleChange = () => {
+    const { onChange, value } = props;
+
+    onChange(!value);
+  };
+
+  const { children, value } = props;
 
   return (
-    <StyledCheckbox onClick={() => onChange(!value)}>
+    <StyledCheckbox onClick={handleChange}>
       <StyledLabel>{children}</StyledLabel>
-      <StyledInput type='checkbox' checked={value} />
+      <StyledInput type='checkbox' checked={value} onChange={handleChange} />
       <StyledCheckmark />
     </StyledCheckbox>
   );

@@ -35,7 +35,7 @@ function CheckboxGroup(props) {
 }
 
 CheckboxGroup.propTypes = {
-  value: PropTypes.arrayOf(PropTypes.oneOf([PropTypes.string, PropTypes.number])),
+  value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   onChange: PropTypes.func,
   data: PropTypes.arrayOf(PropTypes.object),
   dataText: PropTypes.string,
