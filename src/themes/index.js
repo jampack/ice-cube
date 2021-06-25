@@ -1,2 +1,2 @@
-export { default as DefaultTheme } from './default/index';
-export { default as BluTheme } from './blu/index';
+export { default as DefaultTheme } from './default';
+export { default as BluTheme } from './blu';

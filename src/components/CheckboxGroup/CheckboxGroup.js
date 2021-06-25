@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { StyledCheckboxGroup } from './styles';
-import Checkbox from '../Checkbox/index';
+import Checkbox from '../Checkbox';
 
 function CheckboxGroup(props) {
   const handleChange = (item, val) => {

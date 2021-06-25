@@ -1,6 +1,7 @@
 import babel from '@rollup/plugin-babel';
 import external from 'rollup-plugin-peer-deps-external';
 import del from 'rollup-plugin-delete';
+import resolve from 'rollup-plugin-node-resolve';
 import pkg from './package.json';
 
 export default {
@@ -13,6 +14,7 @@ export default {
     format: 'cjs',
   },
   plugins: [
+    resolve(),
     external(),
     babel({
       exclude: 'node_modules/**',
