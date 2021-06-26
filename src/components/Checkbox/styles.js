@@ -55,7 +55,7 @@ export const StyledLabel = styled.label`
   font-size: ${({ theme: { checkbox } }) => checkbox.fontSize};
   font-weight: ${({ theme: { checkbox } }) => checkbox.fontWeight};
   font-family: ${({ theme: { checkbox } }) => checkbox.fontFamily};
-  color: ${(p) => calcFontColor(p)};
+  color: ${() => calcFontColor};
   user-select: none;
   cursor: pointer;
 `;
@@ -77,7 +77,7 @@ export const StyledCheckbox = styled.div`
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark} {
-    background-color: ${(p) => calcCheckedBackgroundColor(p)};
+    background-color: ${() => calcCheckedBackgroundColor};
     border: ${(p) => `1.5px solid ${darken(0.1, calcCheckedBorderColor(p))}`};
   }
 
