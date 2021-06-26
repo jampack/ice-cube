@@ -8,8 +8,22 @@ const Prepend = () => null;
 const Append = () => null;
 
 const Button = (props) => {
-  const { children, variant, size, raised, icon, bordered, fab, color, prepend, append, prependIcon, appendIcon } =
-    props;
+  const {
+    children,
+    variant,
+    size,
+    raised,
+    flat,
+    icon,
+    bordered,
+    fab,
+    color,
+    prepend,
+    append,
+    prependIcon,
+    appendIcon,
+    onClick,
+  } = props;
 
   const childrenClone = wrapObjectInArray(children);
 
@@ -21,11 +35,13 @@ const Button = (props) => {
       className='ic-button'
       variant={variant}
       raised={raised}
+      flat={flat}
       icon={icon}
       size={size}
       bordered={bordered}
       fab={fab}
-      color={color}>
+      color={color}
+      onClick={() => onClick()}>
       {prependSlot && prependSlot.props.children}
       {prependIcon && <span className={prependIcon} />}
       {prepend && prepend}
@@ -47,6 +63,7 @@ Button.propTypes = {
   variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'error', 'warning', 'info']),
   size: PropTypes.oneOf(['xs', 'extraSmall', 'sm', 'small', 'lg', 'large', 'xl', 'extraLarge']),
   raised: PropTypes.bool,
+  flat: PropTypes.bool,
   icon: PropTypes.bool,
   bordered: PropTypes.bool,
   fab: PropTypes.bool,
@@ -55,6 +72,7 @@ Button.propTypes = {
   append: PropTypes.node,
   prependIcon: PropTypes.string,
   appendIcon: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 Button.defaultProps = {
@@ -62,6 +80,7 @@ Button.defaultProps = {
   variant: 'default',
   size: null,
   raised: false,
+  flat: false,
   icon: false,
   bordered: false,
   fab: false,
@@ -70,6 +89,7 @@ Button.defaultProps = {
   append: null,
   prependIcon: null,
   appendIcon: null,
+  onClick: () => {},
 };
 
 export default Button;

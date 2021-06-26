@@ -147,17 +147,23 @@ const calcBtnFontWeight = ({ size, ...p }) => {
   }
 };
 
+const calcBtnShadow = ({ flat, ...p }) => {
+  if (flat) return 'none';
+
+  return p.theme.button.shadow;
+};
+
 export const StyledButton = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: ${(p) => calcBtnHeight(p)};
-  min-width: ${(p) => calcMinWidth(p)};
+  height: ${() => calcBtnHeight};
+  min-width: ${() => calcMinWidth};
   max-width: ${(p) => (p.fab ? calcBtnHeight(p) : 'fit-content')};
   background-color: ${() => calcBtnBackgroundColor};
   border: ${({ bordered, ...p }) => (bordered ? `1.5px solid ${darken(0.1, calcBtnBackgroundColor(p))}` : 'none')};
   border-radius: ${({ fab, ...p }) => (fab ? '50%' : p.theme.button.borderRadius)};
-  box-shadow: ${(p) => p.theme.button.shadow};
+  box-shadow: ${() => calcBtnShadow};
 
   cursor: pointer;
 
@@ -173,10 +179,10 @@ export const StyledButton = styled.div`
 `;
 
 export const ButtonBody = styled.span`
-  padding: ${(p) => calcHorizontalPadding(p)};
-  color: ${(p) => calcBtnFontColor(p)};
-  font-size: ${(p) => calcBtnFontSize(p)};
-  font-weight: ${(p) => calcBtnFontWeight(p)};
+  padding: ${() => calcHorizontalPadding};
+  color: ${() => calcBtnFontColor};
+  font-size: ${() => calcBtnFontSize};
+  font-weight: ${() => calcBtnFontWeight};
   font-family: ${({ theme: { button } }) => button.fontFamily};
   user-select: none;
 `;
