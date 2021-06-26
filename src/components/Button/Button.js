@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledButton, ButtonBody } from './styles';
+import { StyledButton, ButtonBody, PrependIcon, AppendIcon } from './styles';
 import { wrapObjectInArray } from '../../lib/Helpers';
 
 const Prepend = () => null;
@@ -27,8 +27,8 @@ const Button = (props) => {
 
   const childrenClone = wrapObjectInArray(children);
 
-  const appendSlot = childrenClone.find((el) => el.type === Prepend);
-  const prependSlot = childrenClone.find((el) => el.type === Append);
+  const prependSlot = childrenClone.find((el) => el.type === Prepend);
+  const appendSlot = childrenClone.find((el) => el.type === Append);
 
   return (
     <StyledButton
@@ -43,13 +43,13 @@ const Button = (props) => {
       color={color}
       onClick={() => onClick()}>
       {prependSlot && prependSlot.props.children}
-      {prependIcon && <span className={prependIcon} />}
+      {prependIcon && <PrependIcon className={prependIcon} />}
       {prepend && prepend}
       <ButtonBody className='ic-button-body' icon={icon} size={size}>
         {children}
       </ButtonBody>
       {appendSlot && appendSlot.props.children}
-      {appendIcon && <span className={appendIcon} />}
+      {appendIcon && <AppendIcon className={appendIcon} />}
       {append && append}
     </StyledButton>
   );
@@ -60,7 +60,7 @@ Button.Append = Append;
 
 Button.propTypes = {
   children: PropTypes.node,
-  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'error', 'warning', 'info']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'error', 'warning', 'info']),
   size: PropTypes.oneOf(['xs', 'extraSmall', 'sm', 'small', 'lg', 'large', 'xl', 'extraLarge']),
   raised: PropTypes.bool,
   flat: PropTypes.bool,
@@ -82,8 +82,8 @@ Button.defaultProps = {
   raised: false,
   flat: false,
   icon: false,
-  bordered: false,
   fab: false,
+  bordered: false,
   color: null,
   prepend: null,
   append: null,

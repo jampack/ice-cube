@@ -94,18 +94,18 @@ const calcHorizontalPadding = ({ icon, size, ...p }) => {
   switch (size) {
     case 'xs':
     case 'extraSmall':
-      return `0 ${p.theme.button.btnPaddingX.xs}`;
+      return p.theme.button.btnPaddingX.xs;
     case 'sm':
     case 'small':
-      return `0 ${p.theme.button.btnPaddingX.sm}`;
+      return p.theme.button.btnPaddingX.sm;
     case 'lg':
     case 'large':
-      return `0 ${p.theme.button.btnPaddingX.lg}`;
+      return p.theme.button.btnPaddingX.lg;
     case 'xl':
     case 'extraLarge':
-      return `0 ${p.theme.button.btnPaddingX.xl}`;
+      return p.theme.button.btnPaddingX.xl;
     default:
-      return `0 ${p.theme.button.btnPaddingX.default}`;
+      return p.theme.button.btnPaddingX.default;
   }
 };
 
@@ -147,8 +147,8 @@ const calcBtnFontWeight = ({ size, ...p }) => {
   }
 };
 
-const calcBtnShadow = ({ flat, ...p }) => {
-  if (flat) return 'none';
+const calcBtnShadow = ({ flat, bordered, ...p }) => {
+  if (flat || bordered) return 'none';
 
   return p.theme.button.shadow;
 };
@@ -160,7 +160,7 @@ export const StyledButton = styled.div`
   height: ${() => calcBtnHeight};
   min-width: ${() => calcMinWidth};
   max-width: ${(p) => (p.fab ? calcBtnHeight(p) : 'fit-content')};
-  background-color: ${() => calcBtnBackgroundColor};
+  background-color: ${({ bordered }) => (bordered ? 'transparent' : calcBtnBackgroundColor)};
   border: ${({ bordered, ...p }) => (bordered ? `1.5px solid ${darken(0.1, calcBtnBackgroundColor(p))}` : 'none')};
   border-radius: ${({ fab, ...p }) => (fab ? '50%' : p.theme.button.borderRadius)};
   box-shadow: ${() => calcBtnShadow};
@@ -179,10 +179,18 @@ export const StyledButton = styled.div`
 `;
 
 export const ButtonBody = styled.span`
-  padding: ${() => calcHorizontalPadding};
+  padding: ${(p) => `0 ${calcHorizontalPadding(p)}`};
   color: ${() => calcBtnFontColor};
   font-size: ${() => calcBtnFontSize};
   font-weight: ${() => calcBtnFontWeight};
   font-family: ${({ theme: { button } }) => button.fontFamily};
   user-select: none;
+`;
+
+export const PrependIcon = styled.i`
+  padding-left: ${() => calcHorizontalPadding};
+`;
+
+export const AppendIcon = styled.i`
+  padding-right: ${(p) => calcHorizontalPadding(p)};
 `;

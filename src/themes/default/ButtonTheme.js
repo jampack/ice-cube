@@ -51,7 +51,7 @@ const button = {
   },
   btnPaddingX: {
     default: '15px',
-    xs: '0',
+    xs: '5px',
     sm: '10px',
     lg: '20px',
     xl: '35px',
