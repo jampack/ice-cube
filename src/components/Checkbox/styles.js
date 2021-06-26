@@ -63,7 +63,7 @@ export const StyledLabel = styled.label`
 export const StyledCheckbox = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: center;
   height: ${({ theme: { checkbox } }) => checkbox.height};
   position: relative;
   padding-left: ${({ theme: { checkbox } }) => checkbox.labelPaddingLeft};

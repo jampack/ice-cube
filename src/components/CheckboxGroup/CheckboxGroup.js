@@ -21,7 +21,7 @@ function CheckboxGroup(props) {
   const { value, data, dataText, dataValue, horizontal } = props;
 
   return (
-    <StyledCheckboxGroup horizontal={horizontal}>
+    <StyledCheckboxGroup className='ic-checkbox-group' horizontal={horizontal}>
       {data.map((d) => (
         <Checkbox
           key={d[dataValue]}

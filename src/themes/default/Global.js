@@ -1,5 +1,5 @@
 const global = {
-  fontSize: '16px',
+  fontSize: '14px',
   fontWeight: 400,
   fontFamily: "'Roboto', 'sans-serif'",
   fontColor: {

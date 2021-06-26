@@ -13,7 +13,7 @@ function Checkbox(props) {
   const { children, value } = props;
 
   return (
-    <StyledCheckbox onClick={handleChange}>
+    <StyledCheckbox className='ic-checkbox' onClick={handleChange}>
       <StyledLabel>{children}</StyledLabel>
       <StyledInput type='checkbox' checked={value} onChange={handleChange} />
       <StyledCheckmark />

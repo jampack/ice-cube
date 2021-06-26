@@ -1,7 +1,7 @@
 import global from './Global';
 
 const checkbox = {
-  height: '15px',
+  height: '20px',
   boxHeight: '17px',
   boxWidth: '17px',
   unCheckedBorderColor: global.borderColor,
