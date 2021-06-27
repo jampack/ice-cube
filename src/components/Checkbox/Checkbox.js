@@ -10,11 +10,14 @@ function Checkbox(props) {
     onChange(!value);
   };
 
-  const { children, value } = props;
+  const { children, value, label } = props;
 
   return (
     <StyledCheckbox className='ic-checkbox' onClick={handleChange}>
-      <StyledLabel>{children}</StyledLabel>
+      <StyledLabel>
+        {label}
+        {children}
+      </StyledLabel>
       <StyledInput type='checkbox' checked={value} onChange={handleChange} />
       <StyledCheckmark />
     </StyledCheckbox>
@@ -25,12 +28,14 @@ Checkbox.propTypes = {
   children: PropTypes.node,
   value: PropTypes.bool,
   onChange: PropTypes.func,
+  label: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
   children: '',
   value: false,
   onChange: () => {},
+  label: '',
 };
 
 export default Checkbox;

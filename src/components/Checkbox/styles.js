@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 import theme from 'styled-theming';
+import { darken } from 'polished';
 
 const calcUnCheckedBorderColor = theme('mode', {
   light: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.light,
@@ -35,6 +35,15 @@ export const StyledInput = styled.input`
   width: 0;
 `;
 
+export const StyledLabel = styled.label`
+  font-size: ${({ theme: { checkbox } }) => checkbox.fontSize};
+  font-weight: ${({ theme: { checkbox } }) => checkbox.fontWeight};
+  font-family: ${({ theme: { checkbox } }) => checkbox.fontFamily};
+  color: ${() => calcFontColor};
+  user-select: none;
+  cursor: pointer;
+`;
+
 export const StyledCheckmark = styled.span`
   position: absolute;
   top: 0;
@@ -49,15 +58,6 @@ export const StyledCheckmark = styled.span`
     position: absolute;
     display: none;
   }
-`;
-
-export const StyledLabel = styled.label`
-  font-size: ${({ theme: { checkbox } }) => checkbox.fontSize};
-  font-weight: ${({ theme: { checkbox } }) => checkbox.fontWeight};
-  font-family: ${({ theme: { checkbox } }) => checkbox.fontFamily};
-  color: ${() => calcFontColor};
-  user-select: none;
-  cursor: pointer;
 `;
 
 export const StyledCheckbox = styled.div`

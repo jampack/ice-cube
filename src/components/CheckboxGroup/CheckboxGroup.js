@@ -47,8 +47,8 @@ CheckboxGroup.defaultProps = {
   value: [],
   onChange: () => [],
   data: [],
-  dataValue: 'id',
-  dataText: 'name',
+  dataValue: 'value',
+  dataText: 'label',
   horizontal: false,
 };
 
