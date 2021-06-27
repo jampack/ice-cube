@@ -1,8 +1,8 @@
-# Install
-yarn i-all
+### Install
+yarn install
 
-# Develop
+### Develop
 yarn dev
 
-# Build
+### Build
 yarn build
