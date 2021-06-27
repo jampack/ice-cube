@@ -1,7 +1,7 @@
 {
   "name": "ice-cube",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "source": "src/index.js",
