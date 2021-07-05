@@ -36,7 +36,7 @@ const button = {
     },
   },
   btnHeight: {
-    default: global.inputHeight,
+    default: global.btnHeight,
     xs: '25px',
     sm: '30px',
     lg: '40px',

@@ -180,7 +180,7 @@ export const StyledButton = styled.div`
 
 export const ButtonBody = styled.span`
   padding: ${(p) => `0 ${calcHorizontalPadding(p)}`};
-  color: ${() => calcBtnFontColor};
+  color: ${calcBtnFontColor};
   font-size: ${() => calcBtnFontSize};
   font-weight: ${() => calcBtnFontWeight};
   font-family: ${({ theme: { button } }) => button.fontFamily};
