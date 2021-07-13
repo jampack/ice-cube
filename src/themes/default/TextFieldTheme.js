@@ -6,11 +6,16 @@ const textField = {
   paddingY: '0',
   paddingX: '10px',
   borderRadius: global.borderRadius,
+  borderWidth: global.borderWidth,
+  borderColor: {
+    light: global.borderColor.light,
+    dark: global.borderColor.dark,
+  },
   fontSize: global.fontSize,
   fontFamily: global.fontFamily,
   fontWeight: global.fontWeight,
   fontColor: {
-    light: global.fontColor.light,
+    light: 'global.fontColor.light',
     dark: global.fontColor.dark,
   },
   floatingLabelMarginTop: '18px',

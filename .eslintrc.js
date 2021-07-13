@@ -8,6 +8,9 @@ module.exports = {
       version: '^17.0.2',
     },
   },
+  env: {
+    browser: true,
+  },
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',

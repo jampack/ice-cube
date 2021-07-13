@@ -2,12 +2,14 @@ import button from './ButtonTheme';
 import checkbox from './CheckboxTheme';
 import radio from './RadioTheme';
 import textField from './TextFieldTheme';
+import select from './SelectTheme';
 
 const theme = {
   button,
   checkbox,
   radio,
   textField,
+  select,
 };
 
 export default theme;
