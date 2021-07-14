@@ -11,6 +11,7 @@ const textField = {
     light: global.borderColor.light,
     dark: global.borderColor.dark,
   },
+  focusedBorderColor: global.colors.primary,
   fontSize: global.fontSize,
   fontFamily: global.fontFamily,
   fontWeight: global.fontWeight,

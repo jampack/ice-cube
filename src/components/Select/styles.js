@@ -7,12 +7,20 @@ const calcBorderColor = theme('mode', {
 });
 
 export const StyledSelectContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  border-width: 0 10px 0 10px;
-  border-style: solid;
-  border-color: ${() => calcBorderColor};
-  border-radius: 3px;
+  border: ${(p) => `${p.theme.select.borderWidth} solid ${calcBorderColor(p)}`};
+  border-radius: ${({ theme: { select } }) => select.borderRadius};
+  height: ${({ theme: { select } }) => select.height};
+  width: ${({ theme: { select } }) => select.width};
+`;
+
+export const StyledSelectedItem = styled.span`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
 `;
 
 export const StyledSelectTrigger = styled.div`
@@ -20,31 +28,26 @@ export const StyledSelectTrigger = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 22px;
-  font-size: 20px;
-  font-weight: 300;
-  color: #3b3b3b;
-  height: 60px;
-  line-height: 60px;
-  background: #ffffff;
+  padding: ${({ theme: { select } }) => `${select.paddingY} ${select.paddingX}`};
+  font-size: ${({ theme: { select } }) => select.fontSize};
+  font-family: ${({ theme: { select } }) => select.fontFamily};
+  font-weight: ${({ theme: { select } }) => select.fontWeight};
   cursor: pointer;
-  border-width: 2px 0 2px 0;
-  border-style: solid;
-  border-color: #394a6d;
 `;
 
 export const StyledSelectOptions = styled.div`
   position: absolute;
   display: block;
   top: 100%;
-  height: 300px;
+  height: ${({ theme: { select } }) => select.optionsDropdownHeight};
+  width: ${({ theme: { select } }) => select.width};
   overflow-y: auto;
   left: 0;
   right: 0;
-  border: 2px solid #394a6d;
+  border: ${(p) => `${p.theme.select.borderWidth} solid ${calcBorderColor(p)}`};
+  border-radius: 3px;
   border-top: 0;
-  background: #fff;
-  transition: all 0.5s;
+  transition: all 0.3s;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -66,13 +69,12 @@ export const StyledSelect = styled.div`
 export const StyledSelectOption = styled.div`
   position: relative;
   display: block;
-  padding: 0 22px 0 22px;
-  font-size: 22px;
-  font-weight: 300;
-  color: #3b3b3b;
-  line-height: 60px;
+  padding: ${({ theme: { select } }) => `${select.paddingY} ${select.paddingX}`};
+  font-size: ${({ theme: { select } }) => select.optionsFontSize};
+  font-family: ${({ theme: { select } }) => select.optionsFontFamily};
+  font-weight: ${({ theme: { select } }) => select.optionsFontWeight};
   cursor: pointer;
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   :hover {
     cursor: pointer;
@@ -87,38 +89,38 @@ export const StyledSelectOption = styled.div`
 
 export const StyledSelectArrow = styled.div`
   position: relative;
-  height: 15px;
-  width: 15px;
+  height: 10px;
+  width: 10px;
 
   ::before,
   ::after {
     content: '';
     position: absolute;
-    bottom: 0px;
-    width: 0.15rem;
+    bottom: 0;
+    width: 1.5px;
     height: 100%;
     transition: all 0.5s;
   }
 
   ::before {
-    left: -5px;
-    transform: rotate(45deg);
+    left: -3px;
+    transform: rotate(-45deg);
     background-color: #394a6d;
   }
 
   ::after {
-    left: 5px;
-    transform: rotate(-45deg);
+    left: 3px;
+    transform: rotate(45deg);
     background-color: #394a6d;
   }
 
-  &.open ::before {
-    left: -5px;
-    transform: rotate(-45deg);
+  &.open::before {
+    left: -3px;
+    transform: rotate(45deg);
   }
 
-  &.open ::after {
-    left: 5px;
-    transform: rotate(45deg);
+  &.open::after {
+    left: 3px;
+    transform: rotate(-45deg);
   }
 `;

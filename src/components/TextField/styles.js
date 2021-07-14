@@ -46,6 +46,11 @@ const calcBorderUnderColor = theme('mode', {
   dark: ({ theme: { textField } }) => textField.borderUnderActiveColor.dark,
 });
 
+const calcFocusedBorderColor = theme('mode', {
+  light: ({ theme: { textField } }) => textField.focusedBorderColor.light,
+  dark: ({ theme: { textField } }) => textField.focusedBorderColor.dark,
+});
+
 export const StyledInput = styled.input`
   box-sizing: border-box;
 `;
@@ -139,7 +144,7 @@ export const StyledTextField = styled.div`
 
   ${/* sc-sel */ StyledInput}:focus {
     color: #284b63;
-    border-color: #284b63;
+    border-color: ${calcFocusedBorderColor};
   }
 
   ${/* sc-sel */ StyledInput}:focus + ${/* sc-sel */ StyledLabelUnder} {

@@ -5,6 +5,7 @@ import { useOnClickOutside } from '../../lib/Helpers';
 import {
   StyledSelect,
   StyledSelectContainer,
+  StyledSelectedItem,
   StyledSelectTrigger,
   StyledSelectOptions,
   StyledSelectOption,
@@ -47,8 +48,8 @@ function Select(props) {
     <StyledSelect>
       <StyledSelectContainer ref={ref} className={isOpen && 'open'} onClick={() => setSelect(true)}>
         <StyledSelectTrigger>
-          <span>{renderSelectedText()}</span>
-          <StyledSelectArrow />
+          <StyledSelectedItem>{renderSelectedText()}</StyledSelectedItem>
+          <StyledSelectArrow className={`${isOpen ? 'open' : ''}`} />
         </StyledSelectTrigger>
         <StyledSelectOptions>
           {data &&
