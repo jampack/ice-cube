@@ -25,6 +25,11 @@ const calcLabelFontColor = theme('mode', {
   dark: ({ theme: { textField } }) => textField.labelFontColor.dark,
 });
 
+const calcPlaceholderColor = theme('mode', {
+  light: ({ theme: { textField } }) => textField.placeholderColor.light,
+  dark: ({ theme: { textField } }) => textField.placeholderColor.dark,
+});
+
 const calcFloatingLabelBackgroundColor = ({ outlined, underlined, filled, ...p }) => {
   if (outlined || underlined) {
     return p.theme.textField.floatingLabelBackgroundColor;
@@ -57,6 +62,7 @@ export const StyledInput = styled.input`
 
 export const StyledBorderUnder = styled.span`
   position: absolute;
+  box-sizing: border-box;
   bottom: 0;
   left: 0;
   width: 0;
@@ -101,9 +107,10 @@ export const StyledTextField = styled.div`
       p.underlined || p.filled ? `${p.theme.textField.borderWidth} solid ${calcBorderColor(p)}` : ''};
 
     border-radius: ${({ theme: { textField }, ...p }) => (p.underlined || p.filled ? '0' : textField.borderRadius)};
+
     outline: none;
     ::placeholder {
-      color: ${(p) => (p.outlined || p.underlined || p.filled ? 'transparent' : 'black')};
+      color: ${(p) => (p.outlined || p.underlined || p.filled ? 'transparent' : calcPlaceholderColor)};
     }
   }
 
@@ -131,7 +138,7 @@ export const StyledTextField = styled.div`
 
   ${/* sc-sel */ StyledInput}:focus {
     &::placeholder {
-      color: black;
+      color: ${calcPlaceholderColor};
     }
 
     ~ ${StyledBorderUnder} {

@@ -9,6 +9,7 @@ const global = {
   btnHeight: '40px',
   inputHeight: '50px',
   inputWidth: '250px',
+  inputPlaceholderColor: { light: '#a9a9a9', dark: '#a9a9a9' },
   borderRadius: '3px',
   borderColor: { light: '#757575', dark: '#757575' },
   borderWidth: '1.5px',

@@ -6,10 +6,14 @@ import {
   StyledSelect,
   StyledSelectContainer,
   StyledSelectedItem,
+  StyledPlaceholder,
+  StyledLabel,
   StyledSelectTrigger,
+  StyledLabelUnder,
   StyledSelectOptions,
   StyledSelectOption,
   StyledSelectArrow,
+  StyledBorderUnder,
 } from './styles';
 
 function Select(props) {
@@ -37,7 +41,7 @@ function Select(props) {
     return '';
   };
 
-  const { data, value, dataText, dataValue } = props;
+  const { data, value, dataText, dataValue, outlined, underlined, block, filled, placeholder, label } = props;
 
   useOnClickOutside(
     ref,
@@ -45,9 +49,20 @@ function Select(props) {
   );
 
   return (
-    <StyledSelect>
-      <StyledSelectContainer ref={ref} className={isOpen && 'open'} onClick={() => setSelect(true)}>
-        <StyledSelectTrigger>
+    <StyledSelect className='ic-select'>
+      {!outlined && !underlined && !filled && <StyledLabel>{label}</StyledLabel>}
+      <StyledSelectContainer
+        ref={ref}
+        className={`${isOpen ? 'open' : ''} ${value ? 'valid' : ''}`}
+        onClick={() => setSelect(true)}
+        outlined={outlined}
+        underlined={underlined}
+        filled={filled}
+        block={block}>
+        <StyledSelectTrigger filled={filled}>
+          {(outlined || underlined || filled) && isOpen && (
+            <StyledPlaceholder>{renderSelectedText().length > 0 ? '' : placeholder}</StyledPlaceholder>
+          )}
           <StyledSelectedItem>{renderSelectedText()}</StyledSelectedItem>
           <StyledSelectArrow className={`${isOpen ? 'open' : ''}`} />
         </StyledSelectTrigger>
@@ -61,6 +76,8 @@ function Select(props) {
               </StyledSelectOption>
             ))}
         </StyledSelectOptions>
+        {(outlined || underlined || filled) && <StyledLabelUnder>{label}</StyledLabelUnder>}
+        {(underlined || filled) && <StyledBorderUnder />}
       </StyledSelectContainer>
     </StyledSelect>
   );
@@ -72,6 +89,12 @@ Select.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   dataText: PropTypes.string,
   dataValue: PropTypes.string,
+  outlined: PropTypes.bool,
+  underlined: PropTypes.bool,
+  block: PropTypes.bool,
+  filled: PropTypes.bool,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 Select.defaultProps = {
@@ -80,6 +103,12 @@ Select.defaultProps = {
   data: [],
   dataText: 'label',
   dataValue: 'value',
+  outlined: false,
+  underlined: false,
+  block: false,
+  label: '',
+  filled: false,
+  placeholder: '',
 };
 
 export default Select;
