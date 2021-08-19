@@ -48,8 +48,16 @@ function Select(props) {
     useCallback(() => setSelect(false), [isOpen])
   );
 
+  const canShowPlaceholder = () => {
+    if (outlined || underlined || filled) {
+      return isOpen && !value;
+    }
+
+    return !value && true;
+  };
+
   return (
-    <StyledSelect className='ic-select'>
+    <StyledSelect className='ic-select' block={block}>
       {!outlined && !underlined && !filled && <StyledLabel>{label}</StyledLabel>}
       <StyledSelectContainer
         ref={ref}
@@ -57,20 +65,20 @@ function Select(props) {
         onClick={() => setSelect(true)}
         outlined={outlined}
         underlined={underlined}
-        filled={filled}
-        block={block}>
+        filled={filled}>
         <StyledSelectTrigger filled={filled}>
-          {(outlined || underlined || filled) && isOpen && (
+          {canShowPlaceholder() && (
             <StyledPlaceholder>{renderSelectedText().length > 0 ? '' : placeholder}</StyledPlaceholder>
           )}
           <StyledSelectedItem>{renderSelectedText()}</StyledSelectedItem>
           <StyledSelectArrow className={`${isOpen ? 'open' : ''}`} />
         </StyledSelectTrigger>
-        <StyledSelectOptions>
+        <StyledSelectOptions block={block}>
           {data &&
             data.map((d) => (
               <StyledSelectOption
                 className={value === d[dataValue] && 'selected'}
+                key={d[dataValue]}
                 onClick={(e) => handleOptionClick(e, d[dataValue])}>
                 {d[dataText]}
               </StyledSelectOption>

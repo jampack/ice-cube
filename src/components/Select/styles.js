@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import theme from 'styled-theming';
 
 const calcBorderColor = theme('mode', {
-  light: (p) => p.theme.select.borderColor.light,
-  dark: (p) => p.theme.select.borderColor.dark,
+  light: ({ theme: { select } }) => select.borderColor.light,
+  dark: ({ theme: { select } }) => select.borderColor.dark,
 });
 
 const calcPlaceholderColor = theme('mode', {
@@ -11,15 +11,15 @@ const calcPlaceholderColor = theme('mode', {
   dark: ({ theme: { select } }) => select.placeholderColor.dark,
 });
 
-const calcLabelTransform = ({ outlined, underlined, filled, theme: { textField } }) => {
+const calcLabelTransform = ({ outlined, underlined, filled, theme: { select } }) => {
   if (outlined) {
-    return `scale(0.8) translateY(${textField.labelOutlinedTransformY})`;
+    return `scale(0.8) translateY(${select.labelOutlinedTransformY})`;
   }
   if (underlined) {
-    return `scale(0.8) translateY(${textField.labelUnderLinedTransformY})`;
+    return `scale(0.8) translateY(${select.labelUnderLinedTransformY})`;
   }
   if (filled) {
-    return `scale(0.8) translateY(${textField.labelFilledTransformY})`;
+    return `scale(0.8) translateY(${select.labelFilledTransformY})`;
   }
 
   return 'none';
@@ -27,7 +27,7 @@ const calcLabelTransform = ({ outlined, underlined, filled, theme: { textField }
 
 const calcFloatingLabelBackgroundColor = ({ outlined, underlined, filled, ...p }) => {
   if (outlined || underlined) {
-    return p.theme.textField.floatingLabelBackgroundColor;
+    return p.theme.select.floatingLabelBackgroundColor;
   }
   if (filled) {
     return 'transparent';
@@ -37,8 +37,18 @@ const calcFloatingLabelBackgroundColor = ({ outlined, underlined, filled, ...p }
 };
 
 const calcLabelFontColor = theme('mode', {
-  light: ({ theme: { textField } }) => textField.labelFontColor.light,
-  dark: ({ theme: { textField } }) => textField.labelFontColor.dark,
+  light: ({ theme: { select } }) => select.labelFontColor.light,
+  dark: ({ theme: { select } }) => select.labelFontColor.dark,
+});
+
+const calcBorderUnderColor = theme('mode', {
+  light: ({ theme: { select } }) => select.borderUnderActiveColor.light,
+  dark: ({ theme: { select } }) => select.borderUnderActiveColor.dark,
+});
+
+const calcSelectedOptionBackgroundColor = theme('mode', {
+  light: ({ theme: { select } }) => select.selectedOptionBackgroundColor.light,
+  dark: ({ theme: { select } }) => select.selectedOptionBackgroundColor.dark,
 });
 
 export const StyledBorderUnder = styled.span`
@@ -51,24 +61,26 @@ export const StyledBorderUnder = styled.span`
 `;
 
 export const StyledPlaceholder = styled.span`
-  position: absolute;
   color: ${calcPlaceholderColor};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const StyledLabel = styled.label`
   display: block;
   padding-left: 10px;
   margin-bottom: 5px;
-  font-size: ${({ theme: { textField } }) => textField.labelFontSize};
-  font-family: ${({ theme: { textField } }) => textField.labelFontFamily};
-  font-weight: ${({ theme: { textField } }) => textField.labelFontWeight};
+  font-size: ${({ theme: { select } }) => select.labelFontSize};
+  font-family: ${({ theme: { select } }) => select.labelFontFamily};
+  font-weight: ${({ theme: { select } }) => select.labelFontWeight};
   color: ${calcLabelFontColor};
 `;
 
 export const StyledLabelUnder = styled.span`
-  font-size: ${({ theme: { textField } }) => textField.labelFontSize};
-  font-family: ${({ theme: { textField } }) => textField.labelFontFamily};
-  font-weight: ${({ theme: { textField } }) => textField.labelFontWeight};
+  font-size: ${({ theme: { select } }) => select.labelFontSize};
+  font-family: ${({ theme: { select } }) => select.labelFontFamily};
+  font-weight: ${({ theme: { select } }) => select.labelFontWeight};
   color: ${calcLabelFontColor};
 `;
 
@@ -76,6 +88,7 @@ export const StyledSelectContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme: { select } }) => select.backgroundColor};
 
   border: ${(p) => (p.underlined || p.filled ? 'none' : `${p.theme.select.borderWidth} solid ${calcBorderColor(p)}`)};
 
@@ -90,15 +103,15 @@ export const StyledSelectContainer = styled.div`
       width: 100%;
       transition: 0.3s width ease-in-out;
       height: 0;
-      border: ${(p) => (p.underlined || p.filled ? `1px solid red` : 'none')};
+      border: ${(p) => (p.underlined || p.filled ? `1px solid ${calcBorderUnderColor(p)}` : 'none')};
     }
   }
 
   ${StyledLabelUnder} {
     display: flex;
     position: absolute;
-    margin: ${({ theme: { textField } }) => `${textField.floatingLabelMarginTop} 0`};
-    padding: ${({ theme: { textField } }) => `0 ${textField.floatingLabelPaddingX}`};
+    margin: ${({ theme: { select } }) => `${select.floatingLabelMarginTop} 0`};
+    padding: ${({ theme: { select } }) => `0 ${select.floatingLabelPaddingX}`};
     align-items: center;
     top: 0;
     left: 0;
@@ -113,7 +126,7 @@ export const StyledSelectContainer = styled.div`
     ${StyledLabelUnder} {
       transform: ${calcLabelTransform};
       background: ${calcFloatingLabelBackgroundColor};
-      left: ${({ theme: { textField } }) => textField.floatingLabelMarginLeft};
+      left: ${({ theme: { select } }) => select.floatingLabelMarginLeft};
       padding: 0 3px;
     }
   }
@@ -147,7 +160,7 @@ export const StyledSelectOptions = styled.div`
   display: block;
   top: 100%;
   height: ${({ theme: { select } }) => select.optionsDropdownHeight};
-  width: ${({ theme: { select } }) => select.width};
+  width: ${({ theme: { select }, ...p }) => (p.block ? '100%' : select.width)};
   overflow-y: auto;
   left: 0;
   right: 0;
@@ -165,8 +178,7 @@ export const StyledSelectOptions = styled.div`
 export const StyledSelect = styled.div`
   position: relative;
   user-select: none;
-  width: ${({ theme: { select } }) => select.width};
-
+  width: ${({ theme: { select }, ...p }) => (p.block ? '100%' : select.width)};
   ${StyledSelectContainer}.open ${StyledSelectOptions} {
     opacity: 1;
     visibility: visible;
@@ -191,7 +203,7 @@ export const StyledSelectOption = styled.div`
 
   &.selected {
     color: #ffffff;
-    background-color: #305c91;
+    background-color: ${calcSelectedOptionBackgroundColor};
   }
 `;
 
