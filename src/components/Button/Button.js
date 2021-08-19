@@ -60,7 +60,7 @@ Button.Append = Append;
 
 Button.propTypes = {
   children: PropTypes.node,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'error', 'warning', 'info']),
+  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'error', 'warning', 'info']),
   size: PropTypes.oneOf(['xs', 'extraSmall', 'sm', 'small', 'lg', 'large', 'xl', 'extraLarge']),
   raised: PropTypes.bool,
   flat: PropTypes.bool,

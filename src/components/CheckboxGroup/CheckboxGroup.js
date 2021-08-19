@@ -22,14 +22,15 @@ function CheckboxGroup(props) {
 
   return (
     <StyledCheckboxGroup className='ic-checkbox-group' horizontal={horizontal}>
-      {data.map((d) => (
-        <Checkbox
-          key={d[dataValue]}
-          value={value.includes(d[dataValue])}
-          onChange={(r) => handleChange(d[dataValue], r)}>
-          {d[dataText]}
-        </Checkbox>
-      ))}
+      {data &&
+        data.map((d) => (
+          <Checkbox
+            key={d[dataValue]}
+            value={value.includes(d[dataValue])}
+            onChange={(r) => handleChange(d[dataValue], r)}>
+            {d[dataText]}
+          </Checkbox>
+        ))}
     </StyledCheckboxGroup>
   );
 }
@@ -47,8 +48,8 @@ CheckboxGroup.defaultProps = {
   value: [],
   onChange: () => [],
   data: [],
-  dataValue: 'value',
   dataText: 'label',
+  dataValue: 'value',
   horizontal: false,
 };
 

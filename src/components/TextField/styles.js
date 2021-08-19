@@ -16,13 +16,18 @@ const calcLabelTransform = ({ outlined, underlined, filled, theme: { textField }
 };
 
 const calcTextFieldFontColor = theme('mode', {
-  light: (p) => p.theme.textField.fontColor.light,
-  dark: (p) => p.theme.textField.fontColor.dark,
+  light: ({ theme: { textField } }) => textField.fontColor.light,
+  dark: ({ theme: { textField } }) => textField.fontColor.dark,
 });
 
 const calcLabelFontColor = theme('mode', {
-  light: (p) => p.theme.textField.labelFontColor.light,
-  dark: (p) => p.theme.textField.labelFontColor.dark,
+  light: ({ theme: { textField } }) => textField.labelFontColor.light,
+  dark: ({ theme: { textField } }) => textField.labelFontColor.dark,
+});
+
+const calcPlaceholderColor = theme('mode', {
+  light: ({ theme: { textField } }) => textField.placeholderColor.light,
+  dark: ({ theme: { textField } }) => textField.placeholderColor.dark,
 });
 
 const calcFloatingLabelBackgroundColor = ({ outlined, underlined, filled, ...p }) => {
@@ -36,9 +41,19 @@ const calcFloatingLabelBackgroundColor = ({ outlined, underlined, filled, ...p }
   return 'none';
 };
 
+const calcBorderColor = theme('mode', {
+  light: ({ theme: { textField } }) => textField.borderColor.light,
+  dark: ({ theme: { textField } }) => textField.borderColor.dark,
+});
+
 const calcBorderUnderColor = theme('mode', {
-  light: (p) => p.theme.textField.borderUnderActiveColor.light,
-  dark: (p) => p.theme.textField.borderUnderActiveColor.dark,
+  light: ({ theme: { textField } }) => textField.borderUnderActiveColor.light,
+  dark: ({ theme: { textField } }) => textField.borderUnderActiveColor.dark,
+});
+
+const calcFocusedBorderColor = theme('mode', {
+  light: ({ theme: { textField } }) => textField.focusedBorderColor.light,
+  dark: ({ theme: { textField } }) => textField.focusedBorderColor.dark,
 });
 
 export const StyledInput = styled.input`
@@ -47,6 +62,7 @@ export const StyledInput = styled.input`
 
 export const StyledBorderUnder = styled.span`
   position: absolute;
+  box-sizing: border-box;
   bottom: 0;
   left: 0;
   width: 0;
@@ -83,12 +99,18 @@ export const StyledTextField = styled.div`
     font-weight: ${({ theme: { textField } }) => textField.fontWeight};
     color: ${calcTextFieldFontColor};
     background-color: ${(p) => (p.filled ? '#f0f0f0' : 'transparent')};
-    border: ${(p) => (p.underlined || p.filled ? 'none' : '1px solid #d9d9d9')};
-    border-bottom: ${(p) => (p.underlined || p.filled ? '1px solid #d9d9d9' : '')};
+
+    border: ${(p) =>
+      p.underlined || p.filled ? 'none' : `${p.theme.textField.borderWidth} solid ${calcBorderColor(p)}`};
+
+    border-bottom: ${(p) =>
+      p.underlined || p.filled ? `${p.theme.textField.borderWidth} solid ${calcBorderColor(p)}` : ''};
+
     border-radius: ${({ theme: { textField }, ...p }) => (p.underlined || p.filled ? '0' : textField.borderRadius)};
+
     outline: none;
     ::placeholder {
-      color: ${(p) => (p.outlined || p.underlined || p.filled ? 'transparent' : 'black')};
+      color: ${(p) => (p.outlined || p.underlined || p.filled ? 'transparent' : calcPlaceholderColor)};
     }
   }
 
@@ -116,7 +138,7 @@ export const StyledTextField = styled.div`
 
   ${/* sc-sel */ StyledInput}:focus {
     &::placeholder {
-      color: black;
+      color: ${calcPlaceholderColor};
     }
 
     ~ ${StyledBorderUnder} {
@@ -129,7 +151,7 @@ export const StyledTextField = styled.div`
 
   ${/* sc-sel */ StyledInput}:focus {
     color: #284b63;
-    border-color: #284b63;
+    border-color: ${calcFocusedBorderColor};
   }
 
   ${/* sc-sel */ StyledInput}:focus + ${/* sc-sel */ StyledLabelUnder} {

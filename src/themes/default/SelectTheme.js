@@ -1,34 +1,37 @@
 import global from './Global';
 
-const textField = {
+const select = {
+  border: global.borderColor,
+  borderColor: global.borderColor,
+  borderWidth: global.borderWidth,
+  borderRadius: global.borderRadius,
   height: global.inputHeight,
   width: global.inputWidth,
-  paddingY: '0',
+  backgroundColor: global.inputBackgroundColor,
+  paddingY: '0px',
   paddingX: '10px',
-  borderRadius: global.borderRadius,
-  borderWidth: global.borderWidth,
-  borderColor: {
-    light: global.borderColor.light,
-    dark: global.borderColor.dark,
+  optionsPaddingY: '17px',
+  optionsPaddingX: '10px',
+  borderUnderActiveColor: { light: global.colors.primary.light, dark: global.colors.primary.dark },
+  selectedOptionBackgroundColor: {
+    light: global.colors.primary.light,
+    dark: global.colors.primary.dark,
   },
   placeholderColor: {
     light: global.inputPlaceholderColor.light,
     dark: global.inputPlaceholderColor.dark,
   },
-  focusedBorderColor: global.colors.primary,
   fontSize: global.fontSize,
   fontFamily: global.fontFamily,
   fontWeight: global.fontWeight,
-  fontColor: {
-    light: 'global.fontColor.light',
-    dark: global.fontColor.dark,
-  },
+  optionsFontSize: global.fontSize,
+  optionsFontFamily: global.fontFamily,
+  optionsFontWeight: global.fontWeight,
   floatingLabelMarginTop: '18px',
   floatingLabelPaddingX: '15px',
   floatingLabelBackgroundColor: '#FFFFFF',
   floatingLabelMarginLeft: '9px',
-  borderUnderActiveColor: { light: global.colors.primary.light, dark: global.colors.primary.dark },
-  defaultLabelPaddingLeft: '5px',
+  optionsDropdownHeight: '186px',
   labelOutlinedTransformY: '-30px',
   labelUnderLinedTransformY: '-30px',
   labelFilledTransformY: '-22px',
@@ -41,4 +44,4 @@ const textField = {
   },
 };
 
-export default textField;
+export default select;

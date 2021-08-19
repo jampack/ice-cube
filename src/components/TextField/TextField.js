@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import { StyledTextField, StyledInput, StyledLabel, StyledLabelUnder, StyledBorderUnder } from './styles';
 
 function TextField(props) {
-  const makeInputClasses = () => {
+  const makeClasses = () => {
     const str = 'ic-text-field';
 
     return str;
   };
 
-  const { value, onChange, type, outlined, underlined, filled, label, block } = props;
+  const { value, onChange, type, outlined, underlined, filled, label, block, placeholder } = props;
 
   return (
     <StyledTextField
-      className={makeInputClasses()}
+      className={makeClasses()}
       outlined={outlined}
       underlined={underlined}
       filled={filled}
@@ -25,7 +25,7 @@ function TextField(props) {
         type={type}
         value={value}
         onChange={(r) => onChange(r.target.value)}
-        placeholder='this is placeholder'
+        placeholder={placeholder}
       />
       {(outlined || underlined || filled) && <StyledLabelUnder>{label}</StyledLabelUnder>}
       {(underlined || filled) && <StyledBorderUnder />}
@@ -42,6 +42,7 @@ TextField.propTypes = {
   filled: PropTypes.bool,
   label: PropTypes.string,
   block: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 TextField.defaultProps = {
@@ -53,6 +54,7 @@ TextField.defaultProps = {
   filled: false,
   label: '',
   block: false,
+  placeholder: '',
 };
 
 export default TextField;
