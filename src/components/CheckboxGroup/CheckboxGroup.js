@@ -36,21 +36,21 @@ function CheckboxGroup(props) {
 }
 
 CheckboxGroup.propTypes = {
-  value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  onChange: PropTypes.func,
   data: PropTypes.arrayOf(PropTypes.object),
   dataText: PropTypes.string,
   dataValue: PropTypes.string,
   horizontal: PropTypes.bool,
+  onChange: PropTypes.func,
+  value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
 
 CheckboxGroup.defaultProps = {
-  value: [],
-  onChange: () => [],
   data: [],
   dataText: 'label',
   dataValue: 'value',
   horizontal: false,
+  onChange: () => [],
+  value: [],
 };
 
 export default CheckboxGroup;

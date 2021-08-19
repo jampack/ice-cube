@@ -30,21 +30,21 @@ function RadioGroup(props) {
 }
 
 RadioGroup.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onChange: PropTypes.func,
   data: PropTypes.arrayOf(PropTypes.object),
   dataText: PropTypes.string,
   dataValue: PropTypes.string,
   horizontal: PropTypes.bool,
+  onChange: PropTypes.func,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 RadioGroup.defaultProps = {
-  value: null,
-  onChange: () => {},
   data: [],
-  dataValue: 'value',
   dataText: 'label',
+  dataValue: 'value',
   horizontal: false,
+  onChange: () => {},
+  value: null,
 };
 
 export default RadioGroup;

@@ -92,31 +92,31 @@ function Select(props) {
 }
 
 Select.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onChange: PropTypes.func,
+  block: PropTypes.bool,
   data: PropTypes.arrayOf(PropTypes.object),
   dataText: PropTypes.string,
   dataValue: PropTypes.string,
-  outlined: PropTypes.bool,
-  underlined: PropTypes.bool,
-  block: PropTypes.bool,
   filled: PropTypes.bool,
   label: PropTypes.string,
+  onChange: PropTypes.func,
+  outlined: PropTypes.bool,
   placeholder: PropTypes.string,
+  underlined: PropTypes.bool,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Select.defaultProps = {
-  value: null,
-  onChange: () => {},
+  block: false,
   data: [],
   dataText: 'label',
   dataValue: 'value',
-  outlined: false,
-  underlined: false,
-  block: false,
-  label: '',
   filled: false,
+  label: '',
+  onChange: () => {},
+  outlined: false,
   placeholder: '',
+  underlined: false,
+  value: null,
 };
 
 export default Select;

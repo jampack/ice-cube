@@ -16,18 +16,18 @@ const calcLabelTransform = ({ outlined, underlined, filled, theme: { textField }
 };
 
 const calcTextFieldFontColor = theme('mode', {
-  light: ({ theme: { textField } }) => textField.fontColor.light,
   dark: ({ theme: { textField } }) => textField.fontColor.dark,
+  light: ({ theme: { textField } }) => textField.fontColor.light,
 });
 
 const calcLabelFontColor = theme('mode', {
-  light: ({ theme: { textField } }) => textField.labelFontColor.light,
   dark: ({ theme: { textField } }) => textField.labelFontColor.dark,
+  light: ({ theme: { textField } }) => textField.labelFontColor.light,
 });
 
 const calcPlaceholderColor = theme('mode', {
-  light: ({ theme: { textField } }) => textField.placeholderColor.light,
   dark: ({ theme: { textField } }) => textField.placeholderColor.dark,
+  light: ({ theme: { textField } }) => textField.placeholderColor.light,
 });
 
 const calcFloatingLabelBackgroundColor = ({ outlined, underlined, filled, ...p }) => {
@@ -42,18 +42,18 @@ const calcFloatingLabelBackgroundColor = ({ outlined, underlined, filled, ...p }
 };
 
 const calcBorderColor = theme('mode', {
-  light: ({ theme: { textField } }) => textField.borderColor.light,
   dark: ({ theme: { textField } }) => textField.borderColor.dark,
+  light: ({ theme: { textField } }) => textField.borderColor.light,
 });
 
 const calcBorderUnderColor = theme('mode', {
-  light: ({ theme: { textField } }) => textField.borderUnderActiveColor.light,
   dark: ({ theme: { textField } }) => textField.borderUnderActiveColor.dark,
+  light: ({ theme: { textField } }) => textField.borderUnderActiveColor.light,
 });
 
 const calcFocusedBorderColor = theme('mode', {
-  light: ({ theme: { textField } }) => textField.focusedBorderColor.light,
   dark: ({ theme: { textField } }) => textField.focusedBorderColor.dark,
+  light: ({ theme: { textField } }) => textField.focusedBorderColor.light,
 });
 
 export const StyledInput = styled.input`

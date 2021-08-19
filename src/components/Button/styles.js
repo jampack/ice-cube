@@ -4,56 +4,56 @@ import { darken } from 'polished';
 
 const _btnBackgroundColor = theme.variants('mode', 'variant', {
   default: {
-    light: (p) => p.theme.button.backgroundColor.default.light,
     dark: (p) => p.theme.button.backgroundColor.default.dark,
-  },
-  primary: {
-    light: (p) => p.theme.button.backgroundColor.primary.light,
-    dark: (p) => p.theme.button.backgroundColor.primary.dark,
-  },
-  secondary: {
-    light: (p) => p.theme.button.backgroundColor.secondary.light,
-    dark: (p) => p.theme.button.backgroundColor.secondary.dark,
-  },
-  success: {
-    light: (p) => p.theme.button.backgroundColor.success.light,
-    dark: (p) => p.theme.button.backgroundColor.success.dark,
+    light: (p) => p.theme.button.backgroundColor.default.light,
   },
   error: {
-    light: (p) => p.theme.button.backgroundColor.error.light,
     dark: (p) => p.theme.button.backgroundColor.error.dark,
-  },
-  warning: {
-    light: (p) => p.theme.button.backgroundColor.warning.light,
-    dark: (p) => p.theme.button.backgroundColor.warning.dark,
+    light: (p) => p.theme.button.backgroundColor.error.light,
   },
   info: {
-    light: (p) => p.theme.button.backgroundColor.info.light,
     dark: (p) => p.theme.button.backgroundColor.info.dark,
+    light: (p) => p.theme.button.backgroundColor.info.light,
+  },
+  primary: {
+    dark: (p) => p.theme.button.backgroundColor.primary.dark,
+    light: (p) => p.theme.button.backgroundColor.primary.light,
+  },
+  secondary: {
+    dark: (p) => p.theme.button.backgroundColor.secondary.dark,
+    light: (p) => p.theme.button.backgroundColor.secondary.light,
+  },
+  success: {
+    dark: (p) => p.theme.button.backgroundColor.success.dark,
+    light: (p) => p.theme.button.backgroundColor.success.light,
+  },
+  warning: {
+    dark: (p) => p.theme.button.backgroundColor.warning.dark,
+    light: (p) => p.theme.button.backgroundColor.warning.light,
   },
 });
 
 const calcBtnFontColor = theme('mode', {
-  light: (p) => p.theme.button.fontColor.light,
   dark: (p) => p.theme.button.fontColor.dark,
+  light: (p) => p.theme.button.fontColor.light,
 });
 
 const calcBtnHeight = ({ size, ...p }) => {
   switch (size) {
     case 'xs':
     case 'extraSmall':
-      return p.theme.button.btnHeight.xs;
+      return p.theme.button.height.xs;
     case 'sm':
     case 'small':
-      return p.theme.button.btnHeight.sm;
+      return p.theme.button.height.sm;
     case 'lg':
     case 'large':
-      return p.theme.button.btnHeight.lg;
+      return p.theme.button.height.lg;
     case 'xl':
     case 'extraLarge':
-      return p.theme.button.btnHeight.xl;
+      return p.theme.button.height.xl;
     default:
-      return p.theme.button.btnHeight.default;
+      return p.theme.button.height.default;
   }
 };
 
@@ -65,18 +65,18 @@ const calcMinWidth = ({ size, fab, ...p }) => {
   switch (size) {
     case 'xs':
     case 'extraSmall':
-      return p.theme.button.btnMinWidth.xs;
+      return p.theme.button.minWidth.xs;
     case 'sm':
     case 'small':
-      return p.theme.button.btnMinWidth.sm;
+      return p.theme.button.minWidth.sm;
     case 'lg':
     case 'large':
-      return p.theme.button.btnMinWidth.lg;
+      return p.theme.button.minWidth.lg;
     case 'xl':
     case 'extraLarge':
-      return p.theme.button.btnMinWidth.xl;
+      return p.theme.button.minWidth.xl;
     default:
-      return p.theme.button.btnMinWidth.default;
+      return p.theme.button.minWidth.default;
   }
 };
 
@@ -94,18 +94,18 @@ const calcHorizontalPadding = ({ icon, size, ...p }) => {
   switch (size) {
     case 'xs':
     case 'extraSmall':
-      return p.theme.button.btnPaddingX.xs;
+      return p.theme.button.paddingX.xs;
     case 'sm':
     case 'small':
-      return p.theme.button.btnPaddingX.sm;
+      return p.theme.button.paddingX.sm;
     case 'lg':
     case 'large':
-      return p.theme.button.btnPaddingX.lg;
+      return p.theme.button.paddingX.lg;
     case 'xl':
     case 'extraLarge':
-      return p.theme.button.btnPaddingX.xl;
+      return p.theme.button.paddingX.xl;
     default:
-      return p.theme.button.btnPaddingX.default;
+      return p.theme.button.paddingX.default;
   }
 };
 
@@ -161,7 +161,9 @@ export const StyledButton = styled.div`
   min-width: ${() => calcMinWidth};
   max-width: ${(p) => (p.fab ? calcBtnHeight(p) : 'fit-content')};
   background-color: ${({ bordered }) => (bordered ? 'transparent' : calcBtnBackgroundColor)};
+
   border: ${({ bordered, ...p }) => (bordered ? `1.5px solid ${darken(0.1, calcBtnBackgroundColor(p))}` : 'none')};
+
   border-radius: ${({ fab, ...p }) => (fab ? '50%' : p.theme.button.borderRadius)};
   box-shadow: ${() => calcBtnShadow};
 

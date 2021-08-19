@@ -8,8 +8,8 @@ const theme = {
   button,
   checkbox,
   radio,
-  textField,
   select,
+  textField,
 };
 
 export default theme;

@@ -25,16 +25,16 @@ function Radio(props) {
 
 Radio.propTypes = {
   children: PropTypes.node,
-  value: PropTypes.bool,
-  onChange: PropTypes.func,
   label: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.bool,
 };
 
 Radio.defaultProps = {
   children: '',
-  value: true,
-  onChange: () => {},
   label: '',
+  onChange: () => {},
+  value: true,
 };
 
 export default Radio;

@@ -3,33 +3,33 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 const calcFontColor = theme('mode', {
-  light: ({ theme: { radio } }) => radio.fontColor.light,
   dark: ({ theme: { radio } }) => radio.fontColor.dark,
+  light: ({ theme: { radio } }) => radio.fontColor.light,
 });
 
 const calcUnCheckedBorderColor = theme('mode', {
-  light: ({ theme: { radio } }) => radio.unCheckedBorderColor.light,
-  dark: ({ theme: { radio } }) => radio.unCheckedBorderColor.dark,
+  dark: ({ theme: { radio } }) => radio.uncheckedBorderColor.dark,
+  light: ({ theme: { radio } }) => radio.uncheckedBorderColor.light,
 });
 
 const calcCircleHoverColor = theme('mode', {
-  light: ({ theme: { radio } }) => radio.circleHoverColor.light,
   dark: ({ theme: { radio } }) => radio.circleHoverColor.dark,
+  light: ({ theme: { radio } }) => radio.circleHoverColor.light,
 });
 
 const calcCheckedBackgroundColor = theme('mode', {
-  light: ({ theme: { radio } }) => radio.checkedBackgroundColor.light,
   dark: ({ theme: { radio } }) => radio.checkedBackgroundColor.dark,
+  light: ({ theme: { radio } }) => radio.checkedBackgroundColor.light,
 });
 
 const calcCheckedBorderColor = theme('mode', {
-  light: ({ theme: { radio } }) => radio.checkedBorderColor.light,
   dark: ({ theme: { radio } }) => radio.checkedBorderColor.dark,
+  light: ({ theme: { radio } }) => radio.checkedBorderColor.light,
 });
 
 const calcCheckedDotColor = theme('mode', {
-  light: ({ theme: { radio } }) => radio.checkedDotColor.light,
   dark: ({ theme: { radio } }) => radio.checkedDotColor.dark,
+  light: ({ theme: { radio } }) => radio.checkedDotColor.light,
 });
 
 export const StyledInput = styled.input`
@@ -72,7 +72,7 @@ export const StyledRadio = styled.div`
   height: ${({ theme: { radio } }) => radio.height};
   position: relative;
   padding-left: ${({ theme: { radio } }) => radio.labelPaddingLeft};
-  margin: ${({ theme: { radio } }) => `${radio.verticalMargin} 0`};
+  margin: ${({ theme: { radio } }) => `${radio.marginY} 0`};
   width: fit-content;
   cursor: pointer;
   user-select: none;
@@ -91,10 +91,10 @@ export const StyledRadio = styled.div`
   }
 
   ${/* sc-sel */ StyledCheckmark}:after {
-    left: ${({ theme: { radio } }) => radio.checkMarkMarginLeft};
-    top: ${({ theme: { radio } }) => radio.checkMarkMarginTop};
-    width: ${({ theme: { radio } }) => radio.checkMarkWidth};
-    height: ${({ theme: { radio } }) => radio.checkMarkHeight};
+    left: ${({ theme: { radio } }) => radio.checkmarkMarginLeft};
+    top: ${({ theme: { radio } }) => radio.checkmarkMarginTop};
+    width: ${({ theme: { radio } }) => radio.checkmarkWidth};
+    height: ${({ theme: { radio } }) => radio.checkmarkHeight};
     border-radius: 50%;
     background: ${() => calcCheckedDotColor};
   }

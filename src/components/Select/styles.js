@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import theme from 'styled-theming';
 
 const calcBorderColor = theme('mode', {
-  light: ({ theme: { select } }) => select.borderColor.light,
   dark: ({ theme: { select } }) => select.borderColor.dark,
+  light: ({ theme: { select } }) => select.borderColor.light,
 });
 
 const calcPlaceholderColor = theme('mode', {
-  light: ({ theme: { select } }) => select.placeholderColor.light,
   dark: ({ theme: { select } }) => select.placeholderColor.dark,
+  light: ({ theme: { select } }) => select.placeholderColor.light,
 });
 
 const calcLabelTransform = ({ outlined, underlined, filled, theme: { select } }) => {
@@ -37,18 +37,18 @@ const calcFloatingLabelBackgroundColor = ({ outlined, underlined, filled, ...p }
 };
 
 const calcLabelFontColor = theme('mode', {
-  light: ({ theme: { select } }) => select.labelFontColor.light,
   dark: ({ theme: { select } }) => select.labelFontColor.dark,
+  light: ({ theme: { select } }) => select.labelFontColor.light,
 });
 
 const calcBorderUnderColor = theme('mode', {
-  light: ({ theme: { select } }) => select.borderUnderActiveColor.light,
   dark: ({ theme: { select } }) => select.borderUnderActiveColor.dark,
+  light: ({ theme: { select } }) => select.borderUnderActiveColor.light,
 });
 
 const calcSelectedOptionBackgroundColor = theme('mode', {
-  light: ({ theme: { select } }) => select.selectedOptionBackgroundColor.light,
   dark: ({ theme: { select } }) => select.selectedOptionBackgroundColor.dark,
+  light: ({ theme: { select } }) => select.selectedOptionBackgroundColor.light,
 });
 
 export const StyledBorderUnder = styled.span`

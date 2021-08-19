@@ -26,16 +26,16 @@ function Checkbox(props) {
 
 Checkbox.propTypes = {
   children: PropTypes.node,
-  value: PropTypes.bool,
-  onChange: PropTypes.func,
   label: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {
   children: '',
-  value: false,
-  onChange: () => {},
   label: '',
+  onChange: () => {},
+  value: false,
 };
 
 export default Checkbox;

@@ -34,27 +34,27 @@ function TextField(props) {
 }
 
 TextField.propTypes = {
-  type: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  outlined: PropTypes.bool,
-  underlined: PropTypes.bool,
+  block: PropTypes.bool,
   filled: PropTypes.bool,
   label: PropTypes.string,
-  block: PropTypes.bool,
+  onChange: PropTypes.func,
+  outlined: PropTypes.bool,
   placeholder: PropTypes.string,
+  type: PropTypes.string,
+  underlined: PropTypes.bool,
+  value: PropTypes.string,
 };
 
 TextField.defaultProps = {
-  type: 'text',
-  value: '',
-  onChange: () => {},
-  outlined: false,
-  underlined: false,
+  block: false,
   filled: false,
   label: '',
-  block: false,
+  onChange: () => {},
+  outlined: false,
   placeholder: '',
+  type: 'text',
+  underlined: false,
+  value: '',
 };
 
 export default TextField;

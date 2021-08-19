@@ -3,28 +3,28 @@ import theme from 'styled-theming';
 import { darken } from 'polished';
 
 const calcUnCheckedBorderColor = theme('mode', {
-  light: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.light,
   dark: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.dark,
+  light: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.light,
 });
 
 const calcFontColor = theme('mode', {
-  light: ({ theme: { checkbox } }) => checkbox.fontColor.light,
   dark: ({ theme: { checkbox } }) => checkbox.fontColor.dark,
+  light: ({ theme: { checkbox } }) => checkbox.fontColor.light,
 });
 
 const calcBoxHoverColor = theme('mode', {
-  light: ({ theme: { checkbox } }) => checkbox.boxHoverColor.light,
   dark: ({ theme: { checkbox } }) => checkbox.boxHoverColor.dark,
+  light: ({ theme: { checkbox } }) => checkbox.boxHoverColor.light,
 });
 
 const calcCheckedBackgroundColor = theme('mode', {
-  light: ({ theme: { checkbox } }) => checkbox.checkedBackgroundColor.light,
   dark: ({ theme: { checkbox } }) => checkbox.checkedBackgroundColor.dark,
+  light: ({ theme: { checkbox } }) => checkbox.checkedBackgroundColor.light,
 });
 
 const calcCheckedBorderColor = theme('mode', {
-  light: ({ theme: { checkbox } }) => checkbox.checkedBorderColor.light,
   dark: ({ theme: { checkbox } }) => checkbox.checkedBorderColor.dark,
+  light: ({ theme: { checkbox } }) => checkbox.checkedBorderColor.light,
 });
 
 export const StyledInput = styled.input`
@@ -86,11 +86,11 @@ export const StyledCheckbox = styled.div`
   }
 
   ${/* sc-sel */ StyledCheckmark}:after {
-    left: ${({ theme: { checkbox } }) => checkbox.checkMarkMarginLeft};
-    top: ${({ theme: { checkbox } }) => checkbox.checkMarkMarginTop};
-    width: ${({ theme: { checkbox } }) => checkbox.checkMarkWidth};
-    height: ${({ theme: { checkbox } }) => checkbox.checkMarkHeight};
-    border: ${({ theme: { checkbox } }) => `solid ${checkbox.checkMarkColor}`};
+    left: ${({ theme: { checkbox } }) => checkbox.checkmarkMarginLeft};
+    top: ${({ theme: { checkbox } }) => checkbox.checkmarkMarginTop};
+    width: ${({ theme: { checkbox } }) => checkbox.checkmarkWidth};
+    height: ${({ theme: { checkbox } }) => checkbox.checkmarkHeight};
+    border: ${({ theme: { checkbox } }) => `solid ${checkbox.checkmarkColor}`};
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
   }
