@@ -9,13 +9,17 @@ const Append = () => null;
 
 const Button = (props) => {
   const classNames = () => {
-    const { disabled } = props;
-
-    let classes = 'ic-button';
-
-    if (disabled) classes += ' disabled';
+    const classes = 'ic-button';
 
     return classes;
+  };
+
+  const handleClick = () => {
+    const { onClick, disabled } = props;
+
+    if (disabled) return;
+
+    onClick();
   };
 
   const {
@@ -24,6 +28,7 @@ const Button = (props) => {
     size,
     raised,
     flat,
+    disabled,
     icon,
     bordered,
     fab,
@@ -49,9 +54,10 @@ const Button = (props) => {
       icon={icon}
       size={size}
       bordered={bordered}
+      disabled={disabled}
       fab={fab}
       color={color}
-      onClick={() => onClick()}>
+      onClick={handleClick}>
       {prependSlot && prependSlot.props.children}
       {prependIcon && <PrependIcon className={prependIcon} />}
       {prepend && prepend}

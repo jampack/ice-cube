@@ -1,7 +1,7 @@
-export { default as Button } from './Button';
-export { default as Checkbox } from './Checkbox';
-export { default as CheckboxGroup } from './CheckboxGroup';
-export { default as Radio } from './Radio';
-export { default as RadioGroup } from './RadioGroup';
-export { default as TextField } from './TextField';
-export { default as Select } from './Select';
+export { default as Button } from './button';
+export { default as Checkbox } from './checkbox';
+export { default as CheckboxGroup } from './checkboxGroup';
+export { default as Radio } from './radio';
+export { default as RadioGroup } from './radioGroup';
+export { default as TextField } from './textField';
+export { default as Select } from './select';

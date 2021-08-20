@@ -17,6 +17,7 @@ const global = {
       light: '#99ced3',
     },
   },
+  disabledColor: '#dcdcdc',
   fontColor: {
     dark: '#ffffff',
     light: '#5e5e5e',

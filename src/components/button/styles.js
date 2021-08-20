@@ -80,11 +80,13 @@ const calcMinWidth = ({ size, fab, ...p }) => {
   }
 };
 
-const calcBtnBackgroundColor = ({ color, icon, ...p }) => {
+const calcBtnBackgroundColor = ({ color, icon, disabled, ...p }) => {
+  if (disabled) return p.theme.button.disabledColor;
   if (color) return color;
   if (icon) return '#f5f5f5';
 
   const backgroundColor = _btnBackgroundColor(p);
+
   return backgroundColor || '#f5f5f5';
 };
 
@@ -167,14 +169,15 @@ export const StyledButton = styled.div`
   border-radius: ${({ fab, ...p }) => (fab ? '50%' : p.theme.button.borderRadius)};
   box-shadow: ${() => calcBtnShadow};
 
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'auto' : 'pointer')};
 
   &:hover {
-    background: ${(p) => darken(0.05, calcBtnBackgroundColor(p))};
+    background: ${(p) => (!p.disabled ? darken(0.05, calcBtnBackgroundColor(p)) : '')};
   }
 
   &:active {
-    background-color: ${({ raised, ...p }) => (!raised ? darken(0.1, calcBtnBackgroundColor(p)) : '')};
+    background-color: ${({ raised, disabled, ...p }) =>
+      !raised && !disabled ? darken(0.1, calcBtnBackgroundColor(p)) : ''};
     box-shadow: ${({ raised }) => (raised ? '0 0 #fff' : '')};
     transform: translateY(${({ raised }) => (raised ? '1.5px' : '')});
   }

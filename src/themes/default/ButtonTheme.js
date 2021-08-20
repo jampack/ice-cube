@@ -32,6 +32,7 @@ const button = {
     },
   },
   borderRadius: global.borderRadius,
+  disabledColor: global.disabledColor,
   fontColor: {
     dark: global.fontColor.dark,
     light: global.fontColor.light,

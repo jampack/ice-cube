@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { StyledCheckboxGroup } from './styles';
-import Checkbox from '../Checkbox';
+import Checkbox from '../checkbox';
 
 const CheckboxGroup = (props) => {
   const classNames = () => {

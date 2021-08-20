@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { StyledRadioGroup } from './styles';
-import Radio from '../Radio';
+import Radio from '../radio';
 
 const RadioGroup = (props) => {
   useEffect(() => {
