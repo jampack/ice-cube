@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 import { StyledRadio, StyledLabel, StyledInput, StyledCheckmark } from './styles';
 
-function Radio(props) {
+const Radio = (props) => {
+  const classNames = () => {
+    const classes = 'ic-radio';
+
+    return classes;
+  };
+
   const handleChange = () => {
     const { onChange, value } = props;
 
@@ -11,8 +17,9 @@ function Radio(props) {
   };
 
   const { children, value, label } = props;
+
   return (
-    <StyledRadio className='ic-radio' onClick={handleChange}>
+    <StyledRadio className={classNames()} onClick={handleChange}>
       <StyledLabel>
         {label}
         {children}
@@ -21,7 +28,7 @@ function Radio(props) {
       <StyledCheckmark />
     </StyledRadio>
   );
-}
+};
 
 Radio.propTypes = {
   children: PropTypes.node,

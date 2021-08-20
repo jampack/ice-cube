@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import { StyledCheckboxGroup } from './styles';
 import Checkbox from '../Checkbox';
 
-function CheckboxGroup(props) {
+const CheckboxGroup = (props) => {
+  const classNames = () => {
+    const classes = 'ic-checkbox-group';
+
+    return classes;
+  };
+
   const handleChange = (item, val) => {
     const { value, onChange } = props;
     let newArr = value;
@@ -21,7 +27,7 @@ function CheckboxGroup(props) {
   const { value, data, dataText, dataValue, horizontal } = props;
 
   return (
-    <StyledCheckboxGroup className='ic-checkbox-group' horizontal={horizontal}>
+    <StyledCheckboxGroup className={classNames()} horizontal={horizontal}>
       {data &&
         data.map((d) => (
           <Checkbox
@@ -33,7 +39,7 @@ function CheckboxGroup(props) {
         ))}
     </StyledCheckboxGroup>
   );
-}
+};
 
 CheckboxGroup.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),

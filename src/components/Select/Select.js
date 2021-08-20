@@ -16,9 +16,15 @@ import {
   StyledBorderUnder,
 } from './styles';
 
-function Select(props) {
+const Select = (props) => {
   const ref = useRef();
   const [isOpen, setSelect] = useState(false);
+
+  const classNames = () => {
+    const classes = 'ic-select';
+
+    return classes;
+  };
 
   const handleOptionClick = (e, val) => {
     e.stopPropagation();
@@ -57,7 +63,7 @@ function Select(props) {
   };
 
   return (
-    <StyledSelect className='ic-select' block={block}>
+    <StyledSelect className={classNames()} block={block}>
       {!outlined && !underlined && !filled && <StyledLabel>{label}</StyledLabel>}
       <StyledSelectContainer
         ref={ref}
@@ -89,7 +95,7 @@ function Select(props) {
       </StyledSelectContainer>
     </StyledSelect>
   );
-}
+};
 
 Select.propTypes = {
   block: PropTypes.bool,

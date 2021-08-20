@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 import { StyledCheckbox, StyledLabel, StyledInput, StyledCheckmark } from './styles';
 
-function Checkbox(props) {
+const Checkbox = (props) => {
+  const classNames = () => {
+    const classes = 'ic-checkbox';
+
+    return classes;
+  };
+
   const handleChange = () => {
     const { onChange, value } = props;
 
@@ -13,7 +19,7 @@ function Checkbox(props) {
   const { children, value, label } = props;
 
   return (
-    <StyledCheckbox className='ic-checkbox' onClick={handleChange}>
+    <StyledCheckbox className={classNames()} onClick={handleChange}>
       <StyledLabel>
         {label}
         {children}
@@ -22,7 +28,7 @@ function Checkbox(props) {
       <StyledCheckmark />
     </StyledCheckbox>
   );
-}
+};
 
 Checkbox.propTypes = {
   children: PropTypes.node,

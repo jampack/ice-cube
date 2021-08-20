@@ -3,22 +3,17 @@ import PropTypes from 'prop-types';
 
 import { StyledTextField, StyledInput, StyledLabel, StyledLabelUnder, StyledBorderUnder } from './styles';
 
-function TextField(props) {
-  const makeClasses = () => {
-    const str = 'ic-text-field';
+const TextField = (props) => {
+  const classNames = () => {
+    const classes = 'ic-text-field';
 
-    return str;
+    return classes;
   };
 
   const { value, onChange, type, outlined, underlined, filled, label, block, placeholder } = props;
 
   return (
-    <StyledTextField
-      className={makeClasses()}
-      outlined={outlined}
-      underlined={underlined}
-      filled={filled}
-      block={block}>
+    <StyledTextField className={classNames()} outlined={outlined} underlined={underlined} filled={filled} block={block}>
       {!outlined && !underlined && !filled && <StyledLabel>{label}</StyledLabel>}
       <StyledInput
         className={`${value.length ? 'valid' : ''}`}
@@ -31,7 +26,7 @@ function TextField(props) {
       {(underlined || filled) && <StyledBorderUnder />}
     </StyledTextField>
   );
-}
+};
 
 TextField.propTypes = {
   block: PropTypes.bool,

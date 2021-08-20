@@ -8,6 +8,16 @@ const Prepend = () => null;
 const Append = () => null;
 
 const Button = (props) => {
+  const classNames = () => {
+    const { disabled } = props;
+
+    let classes = 'ic-button';
+
+    if (disabled) classes += ' disabled';
+
+    return classes;
+  };
+
   const {
     children,
     variant,
@@ -32,7 +42,7 @@ const Button = (props) => {
 
   return (
     <StyledButton
-      className='ic-button'
+      className={classNames()}
       variant={variant}
       raised={raised}
       flat={flat}
@@ -64,6 +74,7 @@ Button.propTypes = {
   bordered: PropTypes.bool,
   children: PropTypes.node,
   color: PropTypes.string,
+  disabled: PropTypes.bool,
   fab: PropTypes.bool,
   flat: PropTypes.bool,
   icon: PropTypes.bool,
@@ -81,6 +92,7 @@ Button.defaultProps = {
   bordered: false,
   children: '',
   color: null,
+  disabled: false,
   fab: false,
   flat: false,
   icon: false,
