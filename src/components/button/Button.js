@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { StyledButton, ButtonBody, PrependIcon, AppendIcon } from './styles';
 import { wrapObjectInArray } from '../../lib/Helpers';
 
+import { RingSpinner } from '../spinners';
+
 const Prepend = () => null;
 const Append = () => null;
 
@@ -30,6 +32,8 @@ const Button = (props) => {
     flat,
     disabled,
     icon,
+    loading,
+    loadingSpinner,
     bordered,
     fab,
     color,
@@ -37,7 +41,6 @@ const Button = (props) => {
     append,
     prependIcon,
     appendIcon,
-    onClick,
   } = props;
 
   const childrenClone = wrapObjectInArray(children);
@@ -55,6 +58,7 @@ const Button = (props) => {
       size={size}
       bordered={bordered}
       disabled={disabled}
+      loading={loading}
       fab={fab}
       color={color}
       onClick={handleClick}>
@@ -62,7 +66,8 @@ const Button = (props) => {
       {prependIcon && <PrependIcon className={prependIcon} />}
       {prepend && prepend}
       <ButtonBody className='ic-button-body' icon={icon} size={size}>
-        {children}
+        {!loading && children}
+        {loading && (loadingSpinner !== null ? loadingSpinner : <RingSpinner />)}
       </ButtonBody>
       {appendSlot && appendSlot.props.children}
       {appendIcon && <AppendIcon className={appendIcon} />}
@@ -84,6 +89,8 @@ Button.propTypes = {
   fab: PropTypes.bool,
   flat: PropTypes.bool,
   icon: PropTypes.bool,
+  loading: PropTypes.bool,
+  loadingSpinner: PropTypes.node,
   onClick: PropTypes.func,
   prepend: PropTypes.node,
   prependIcon: PropTypes.string,
@@ -102,6 +109,8 @@ Button.defaultProps = {
   fab: false,
   flat: false,
   icon: false,
+  loading: false,
+  loadingSpinner: null,
   onClick: () => {},
   prepend: null,
   prependIcon: null,
