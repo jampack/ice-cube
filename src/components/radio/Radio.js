@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledRadio, StyledLabel, StyledInput, StyledCheckmark } from './styles';
+import { Radio as StyledRadio, Label, Input, Checkmark } from './styles';
 
 const Radio = (props) => {
   const classNames = () => {
@@ -22,12 +22,12 @@ const Radio = (props) => {
 
   return (
     <StyledRadio className={classNames()} onClick={handleChange} disabled={disabled}>
-      <StyledLabel disabled={disabled}>
+      <Label disabled={disabled}>
         {label}
         {children}
-      </StyledLabel>
-      <StyledInput type='checkbox' checked={value} onChange={handleChange} />
-      <StyledCheckmark disabled={disabled} />
+      </Label>
+      <Input type='checkbox' checked={value} onChange={handleChange} />
+      <Checkmark disabled={disabled} />
     </StyledRadio>
   );
 };

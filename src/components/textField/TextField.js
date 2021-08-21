@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledTextField, StyledInput, StyledLabel, StyledLabelUnder, StyledBorderUnder } from './styles';
+import { TextField as StyledTextField, Input, Label, LabelUnder, BorderUnder } from './styles';
 
 const TextField = (props) => {
   const classNames = () => {
@@ -20,8 +20,8 @@ const TextField = (props) => {
       filled={filled}
       block={block}
       disabled={disabled}>
-      {!outlined && !underlined && !filled && <StyledLabel>{label}</StyledLabel>}
-      <StyledInput
+      {!outlined && !underlined && !filled && <Label>{label}</Label>}
+      <Input
         className={`${value.length ? 'valid' : ''}`}
         type={type}
         value={value}
@@ -29,8 +29,8 @@ const TextField = (props) => {
         placeholder={placeholder}
         disabled={disabled}
       />
-      {(outlined || underlined || filled) && <StyledLabelUnder>{label}</StyledLabelUnder>}
-      {(underlined || filled) && <StyledBorderUnder />}
+      {(outlined || underlined || filled) && <LabelUnder>{label}</LabelUnder>}
+      {(underlined || filled) && <BorderUnder />}
     </StyledTextField>
   );
 };

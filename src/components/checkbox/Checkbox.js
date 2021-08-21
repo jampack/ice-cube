@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledCheckbox, StyledLabel, StyledInput, StyledCheckmark } from './styles';
+import { Checkbox as StyledCheckbox, Label, Input, Checkmark } from './styles';
 
 const Checkbox = (props) => {
   const classNames = () => {
@@ -22,12 +22,12 @@ const Checkbox = (props) => {
 
   return (
     <StyledCheckbox className={classNames()} onClick={handleChange} disabled={disabled}>
-      <StyledLabel disabled={disabled}>
+      <Label disabled={disabled}>
         {label}
         {children}
-      </StyledLabel>
-      <StyledInput type='checkbox' checked={value} onChange={handleChange} />
-      <StyledCheckmark disabled={disabled} />
+      </Label>
+      <Input type='checkbox' checked={value} onChange={handleChange} />
+      <Checkmark disabled={disabled} />
     </StyledCheckbox>
   );
 };

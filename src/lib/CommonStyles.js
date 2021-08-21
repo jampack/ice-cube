@@ -1,6 +1,6 @@
 import theme from 'styled-theming';
 
-export const calcFontColor = (component, p) => {
+export const fontColor = (component, p) => {
   const t = theme('mode', {
     dark: () => p.theme[component].fontColor.dark,
     light: () => p.theme[component].fontColor.light,
@@ -9,7 +9,7 @@ export const calcFontColor = (component, p) => {
   return t(p);
 };
 
-export const calcPlaceholderColor = (component, p) => {
+export const placeholderColor = (component, p) => {
   const t = theme('mode', {
     dark: () => p.theme[component].placeholderColor.dark,
     light: () => p.theme[component].placeholderColor.light,
@@ -18,7 +18,7 @@ export const calcPlaceholderColor = (component, p) => {
   return t(p);
 };
 
-export const calcFloatingLabelBackgroundColor = (component, { outlined, underlined, filled, ...p }) => {
+export const floatingLabelBackgroundColor = (component, { outlined, underlined, filled, ...p }) => {
   if (outlined || underlined) {
     return p.theme[component].floatingLabelBackgroundColor;
   }
@@ -29,7 +29,7 @@ export const calcFloatingLabelBackgroundColor = (component, { outlined, underlin
   return 'none';
 };
 
-export const calcLabelTransform = (component, { outlined, underlined, filled, ...p }) => {
+export const labelTransform = (component, { outlined, underlined, filled, ...p }) => {
   if (outlined) {
     return `scale(0.8) translateY(${p.theme[component].labelOutlinedTransformY})`;
   }
@@ -43,7 +43,7 @@ export const calcLabelTransform = (component, { outlined, underlined, filled, ..
   return 'none';
 };
 
-export const calcLabelFontColor = (component, p) => {
+export const labelFontColor = (component, p) => {
   const t = theme('mode', {
     dark: () => p.theme[component].labelFontColor.dark,
     light: () => p.theme[component].labelFontColor.light,
@@ -52,7 +52,7 @@ export const calcLabelFontColor = (component, p) => {
   return t(p);
 };
 
-export const calcBorderColor = (component, p) => {
+export const borderColor = (component, p) => {
   const t = theme('mode', {
     dark: () => p.theme[component].borderColor.dark,
     light: () => p.theme[component].borderColor.light,

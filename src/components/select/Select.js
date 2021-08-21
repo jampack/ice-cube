@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 import { useOnClickOutside } from '../../lib/Helpers';
 import {
-  StyledSelect,
-  StyledSelectContainer,
-  StyledSelectedItem,
-  StyledPlaceholder,
-  StyledLabel,
-  StyledSelectTrigger,
-  StyledLabelUnder,
-  StyledSelectOptions,
-  StyledSelectOption,
-  StyledSelectArrow,
-  StyledBorderUnder,
+  Select as StyledSelect,
+  SelectContainer,
+  SelectedItem,
+  Placeholder,
+  Label,
+  Trigger,
+  LabelUnder,
+  Options,
+  Option,
+  Arrow,
+  BorderUnder,
 } from './styles';
 
 const Select = (props) => {
@@ -73,8 +73,8 @@ const Select = (props) => {
 
   return (
     <StyledSelect className={classNames()} block={block}>
-      {!outlined && !underlined && !filled && <StyledLabel>{label}</StyledLabel>}
-      <StyledSelectContainer
+      {!outlined && !underlined && !filled && <Label>{label}</Label>}
+      <SelectContainer
         ref={ref}
         className={`${isOpen ? 'open' : ''} ${value ? 'valid' : ''}`}
         onClick={handleSelectClick}
@@ -82,27 +82,25 @@ const Select = (props) => {
         underlined={underlined}
         filled={filled}
         disabled={disabled}>
-        <StyledSelectTrigger filled={filled}>
-          {canShowPlaceholder() && (
-            <StyledPlaceholder>{renderSelectedText().length > 0 ? '' : placeholder}</StyledPlaceholder>
-          )}
-          <StyledSelectedItem disabled={disabled}>{renderSelectedText()}</StyledSelectedItem>
-          <StyledSelectArrow className={`${isOpen ? 'open' : ''}`} disabled={disabled} />
-        </StyledSelectTrigger>
-        <StyledSelectOptions block={block}>
+        <Trigger filled={filled}>
+          {canShowPlaceholder() && <Placeholder>{renderSelectedText().length > 0 ? '' : placeholder}</Placeholder>}
+          <SelectedItem disabled={disabled}>{renderSelectedText()}</SelectedItem>
+          <Arrow className={`${isOpen ? 'open' : ''}`} disabled={disabled} />
+        </Trigger>
+        <Options block={block}>
           {data &&
             data.map((d) => (
-              <StyledSelectOption
+              <Option
                 className={value === d[dataValue] && 'selected'}
                 key={d[dataValue]}
                 onClick={(e) => handleOptionClick(e, d[dataValue])}>
                 {d[dataText]}
-              </StyledSelectOption>
+              </Option>
             ))}
-        </StyledSelectOptions>
-        {(outlined || underlined || filled) && <StyledLabelUnder>{label}</StyledLabelUnder>}
-        {(underlined || filled) && <StyledBorderUnder />}
-      </StyledSelectContainer>
+        </Options>
+        {(outlined || underlined || filled) && <LabelUnder>{label}</LabelUnder>}
+        {(underlined || filled) && <BorderUnder />}
+      </SelectContainer>
     </StyledSelect>
   );
 };

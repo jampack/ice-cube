@@ -2,20 +2,20 @@ import styled from 'styled-components';
 import theme from 'styled-theming';
 
 import {
-  calcPlaceholderColor,
-  calcFloatingLabelBackgroundColor,
-  calcLabelTransform,
-  calcLabelFontColor,
-  calcBorderColor,
+  placeholderColor,
+  floatingLabelBackgroundColor,
+  labelTransform,
+  labelFontColor,
+  borderColor,
   calcBorderUnderColor,
 } from '../../lib/CommonStyles';
 
-const calcSelectedOptionBackgroundColor = theme('mode', {
+const selectedOptionBackgroundColor = theme('mode', {
   dark: ({ theme: { select } }) => select.selectedOptionBackgroundColor.dark,
   light: ({ theme: { select } }) => select.selectedOptionBackgroundColor.light,
 });
 
-export const StyledBorderUnder = styled.span`
+export const BorderUnder = styled.span`
   position: absolute;
   box-sizing: border-box;
   bottom: 0;
@@ -24,31 +24,31 @@ export const StyledBorderUnder = styled.span`
   height: 1px;
 `;
 
-export const StyledPlaceholder = styled.span`
-  color: ${(p) => calcPlaceholderColor('select', p)};
+export const Placeholder = styled.span`
+  color: ${(p) => placeholderColor('select', p)};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
-export const StyledLabel = styled.label`
+export const Label = styled.label`
   display: block;
   padding-left: 5px;
   margin-bottom: 5px;
   font-size: ${({ theme: { select } }) => select.labelFontSize};
   font-family: ${({ theme: { select } }) => select.labelFontFamily};
   font-weight: ${({ theme: { select } }) => select.labelFontWeight};
-  color: ${(p) => calcLabelFontColor('select', p)};
+  color: ${(p) => labelFontColor('select', p)};
 `;
 
-export const StyledLabelUnder = styled.span`
+export const LabelUnder = styled.span`
   font-size: ${({ theme: { select } }) => select.labelFontSize};
   font-family: ${({ theme: { select } }) => select.labelFontFamily};
   font-weight: ${({ theme: { select } }) => select.labelFontWeight};
-  color: ${(p) => calcLabelFontColor('select', p)};
+  color: ${(p) => labelFontColor('select', p)};
 `;
 
-export const StyledSelectContainer = styled.div`
+export const SelectContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -57,18 +57,16 @@ export const StyledSelectContainer = styled.div`
   border: ${(p) =>
     p.underlined || p.filled
       ? 'none'
-      : `${p.theme.select.borderWidth} solid ${
-          p.disabled ? p.theme.select.disabledColor : calcBorderColor('select', p)
-        }`};
+      : `${p.theme.select.borderWidth} solid ${p.disabled ? p.theme.select.disabledColor : borderColor('select', p)}`};
 
   border-bottom: ${(p) =>
-    p.underlined || p.filled ? `${p.theme.select.borderWidth} solid ${calcBorderColor('select', p)}` : ''};
+    p.underlined || p.filled ? `${p.theme.select.borderWidth} solid ${borderColor('select', p)}` : ''};
 
   border-radius: ${({ theme: { select }, ...p }) => (p.underlined || p.filled ? '0' : select.borderRadius)};
   height: ${({ theme: { select } }) => select.height};
 
   &.open {
-    ${StyledBorderUnder} {
+    ${BorderUnder} {
       width: 100%;
       transition: 0.3s width ease-in-out;
       height: 0;
@@ -76,7 +74,7 @@ export const StyledSelectContainer = styled.div`
     }
   }
 
-  ${StyledLabelUnder} {
+  ${LabelUnder} {
     display: flex;
     position: absolute;
     margin: ${({ theme: { select } }) => `${select.floatingLabelMarginTop} 0`};
@@ -92,16 +90,16 @@ export const StyledSelectContainer = styled.div`
 
   &.open,
   &.valid {
-    ${StyledLabelUnder} {
-      transform: ${(p) => calcLabelTransform('select', p)};
-      background: ${(p) => calcFloatingLabelBackgroundColor('select', p)};
+    ${LabelUnder} {
+      transform: ${(p) => labelTransform('select', p)};
+      background: ${(p) => floatingLabelBackgroundColor('select', p)};
       left: ${({ theme: { select } }) => select.floatingLabelMarginLeft};
       padding: 0 3px;
     }
   }
 `;
 
-export const StyledSelectedItem = styled.span`
+export const SelectedItem = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -109,7 +107,7 @@ export const StyledSelectedItem = styled.span`
   color: ${(p) => (p.disabled ? p.theme.select.disabledColor : '')};
 `;
 
-export const StyledSelectTrigger = styled.div`
+export const Trigger = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -124,7 +122,7 @@ export const StyledSelectTrigger = styled.div`
   background-color: ${(p) => (p.filled ? '#f0f0f0' : 'transparent')};
 `;
 
-export const StyledSelectOptions = styled.div`
+export const Options = styled.div`
   box-sizing: border-box;
   position: absolute;
   display: block;
@@ -134,7 +132,7 @@ export const StyledSelectOptions = styled.div`
   overflow-y: auto;
   left: 0;
   right: 0;
-  border: ${(p) => `${p.theme.select.borderWidth} solid ${calcBorderColor('select', p)}`};
+  border: ${(p) => `${p.theme.select.borderWidth} solid ${borderColor('select', p)}`};
   background-color: #ffffff;
   border-radius: ${({ theme: { select } }) => `0 0 ${select.borderRadius} ${select.borderRadius}`};
   border-top: 0;
@@ -145,18 +143,18 @@ export const StyledSelectOptions = styled.div`
   z-index: 2;
 `;
 
-export const StyledSelect = styled.div`
+export const Select = styled.div`
   position: relative;
   user-select: none;
   width: ${({ theme: { select }, ...p }) => (p.block ? '100%' : select.width)};
-  ${StyledSelectContainer}.open ${StyledSelectOptions} {
+  ${SelectContainer}.open ${Options} {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
   }
 `;
 
-export const StyledSelectOption = styled.div`
+export const Option = styled.div`
   position: relative;
   display: block;
   padding: ${({ theme: { select } }) => `${select.optionsPaddingY} ${select.optionsPaddingX}`};
@@ -173,11 +171,11 @@ export const StyledSelectOption = styled.div`
 
   &.selected {
     color: #ffffff;
-    background-color: ${calcSelectedOptionBackgroundColor};
+    background-color: ${selectedOptionBackgroundColor};
   }
 `;
 
-export const StyledSelectArrow = styled.div`
+export const Arrow = styled.div`
   position: relative;
   height: 10px;
   width: 10px;

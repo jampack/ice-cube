@@ -1,29 +1,29 @@
 import styled from 'styled-components';
 import theme from 'styled-theming';
 import { darken } from 'polished';
-import { calcFontColor } from '../../lib/CommonStyles';
+import { fontColor } from '../../lib/CommonStyles';
 
-const calcUnCheckedBorderColor = theme('mode', {
+const unCheckedBorderColor = theme('mode', {
   dark: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.dark,
   light: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.light,
 });
 
-const calcBoxHoverColor = theme('mode', {
+const hoverColor = theme('mode', {
   dark: ({ theme: { checkbox } }) => checkbox.boxHoverColor.dark,
   light: ({ theme: { checkbox } }) => checkbox.boxHoverColor.light,
 });
 
-const calcCheckedBackgroundColor = theme('mode', {
+const checkedBackgroundColor = theme('mode', {
   dark: ({ theme: { checkbox } }) => checkbox.checkedBackgroundColor.dark,
   light: ({ theme: { checkbox } }) => checkbox.checkedBackgroundColor.light,
 });
 
-const calcCheckedBorderColor = theme('mode', {
+const checkedBorderColor = theme('mode', {
   dark: ({ theme: { checkbox } }) => checkbox.checkedBorderColor.dark,
   light: ({ theme: { checkbox } }) => checkbox.checkedBorderColor.light,
 });
 
-export const StyledInput = styled.input`
+export const Input = styled.input`
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -31,22 +31,22 @@ export const StyledInput = styled.input`
   width: 0;
 `;
 
-export const StyledLabel = styled.label`
+export const Label = styled.label`
   font-size: ${({ theme: { checkbox } }) => checkbox.fontSize};
   font-weight: ${({ theme: { checkbox } }) => checkbox.fontWeight};
   font-family: ${({ theme: { checkbox } }) => checkbox.fontFamily};
-  color: ${(p) => (p.disabled ? p.theme.checkbox.disabledColor : calcFontColor('checkbox', p))};
+  color: ${(p) => (p.disabled ? p.theme.checkbox.disabledColor : fontColor('checkbox', p))};
   user-select: none;
   cursor: ${(p) => (p.disabled ? 'auto' : 'pointer')};
 `;
 
-export const StyledCheckmark = styled.span`
+export const Checkmark = styled.span`
   position: absolute;
   top: 0;
   left: 0;
   height: ${({ theme: { checkbox } }) => checkbox.boxHeight};
   width: ${({ theme: { checkbox } }) => checkbox.boxWidth};
-  border: ${(p) => `1.5px solid ${p.disabled ? p.theme.checkbox.disabledColor : calcUnCheckedBorderColor(p)}`};
+  border: ${(p) => `1.5px solid ${p.disabled ? p.theme.checkbox.disabledColor : unCheckedBorderColor(p)}`};
   border-radius: ${({ theme: { checkbox } }) => checkbox.borderRadius};
 
   &:after {
@@ -56,7 +56,7 @@ export const StyledCheckmark = styled.span`
   }
 `;
 
-export const StyledCheckbox = styled.div`
+export const Checkbox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -68,21 +68,20 @@ export const StyledCheckbox = styled.div`
   cursor: ${(p) => (p.disabled ? 'auto' : 'pointer')};
   user-select: none;
 
-  &:hover ${/* sc-sel */ StyledInput} ~ ${/* sc-sel */ StyledCheckmark} {
-    border: ${(p) => `${p.disabled ? 'unset' : '1.5px'} solid ${p.disabled ? '' : darken(0.1, calcBoxHoverColor(p))}`};
+  &:hover ${/* sc-sel */ Input} ~ ${/* sc-sel */ Checkmark} {
+    border: ${(p) => `${p.disabled ? 'unset' : '1.5px'} solid ${p.disabled ? '' : darken(0.1, hoverColor(p))}`};
   }
 
-  ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark} {
-    background-color: ${(p) => (p.disabled ? p.theme.checkbox.disabledColor : calcCheckedBackgroundColor)};
-    border: ${(p) =>
-      `1.5px solid ${p.disabled ? p.theme.checkbox.disabledColor : darken(0.1, calcCheckedBorderColor(p))}`};
+  ${/* sc-sel */ Input}:checked ~ ${/* sc-sel */ Checkmark} {
+    background-color: ${(p) => (p.disabled ? p.theme.checkbox.disabledColor : checkedBackgroundColor)};
+    border: ${(p) => `1.5px solid ${p.disabled ? p.theme.checkbox.disabledColor : darken(0.1, checkedBorderColor(p))}`};
   }
 
-  ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark}:after {
+  ${/* sc-sel */ Input}:checked ~ ${/* sc-sel */ Checkmark}:after {
     display: block;
   }
 
-  ${/* sc-sel */ StyledCheckmark}:after {
+  ${/* sc-sel */ Checkmark}:after {
     left: ${({ theme: { checkbox } }) => checkbox.checkmarkMarginLeft};
     top: ${({ theme: { checkbox } }) => checkbox.checkmarkMarginTop};
     width: ${({ theme: { checkbox } }) => checkbox.checkmarkWidth};

@@ -1,7 +1,7 @@
 import theme from 'styled-theming';
 import styled from 'styled-components';
 import { darken } from 'polished';
-import { calcFontColor } from '../../lib/CommonStyles';
+import { fontColor } from '../../lib/CommonStyles';
 
 const _btnBackgroundColor = theme.variants('mode', 'variant', {
   default: {
@@ -34,7 +34,7 @@ const _btnBackgroundColor = theme.variants('mode', 'variant', {
   },
 });
 
-const calcBtnHeight = ({ size, ...p }) => {
+const height = ({ size, ...p }) => {
   switch (size) {
     case 'xs':
     case 'extraSmall':
@@ -53,9 +53,9 @@ const calcBtnHeight = ({ size, ...p }) => {
   }
 };
 
-const calcMinWidth = ({ size, fab, ...p }) => {
+const minWidth = ({ size, fab, ...p }) => {
   if (fab) {
-    return calcBtnHeight({ size, ...p });
+    return height({ size, ...p });
   }
 
   switch (size) {
@@ -76,17 +76,17 @@ const calcMinWidth = ({ size, fab, ...p }) => {
   }
 };
 
-const calcBtnBackgroundColor = ({ color, icon, disabled, ...p }) => {
+const backgroundColor = ({ color, icon, disabled, ...p }) => {
   if (disabled) return p.theme.button.disabledColor;
   if (color) return color;
   if (icon) return '#f5f5f5';
 
-  const backgroundColor = _btnBackgroundColor(p);
+  const bc = _btnBackgroundColor(p);
 
-  return backgroundColor || '#f5f5f5';
+  return bc || '#f5f5f5';
 };
 
-const calcHorizontalPadding = ({ icon, size, ...p }) => {
+const paddingX = ({ icon, size, ...p }) => {
   if (icon) return '0';
 
   switch (size) {
@@ -107,7 +107,7 @@ const calcHorizontalPadding = ({ icon, size, ...p }) => {
   }
 };
 
-const calcBtnFontSize = ({ size, ...p }) => {
+const fontSize = ({ size, ...p }) => {
   switch (size) {
     case 'xs':
     case 'extraSmall':
@@ -126,7 +126,7 @@ const calcBtnFontSize = ({ size, ...p }) => {
   }
 };
 
-const calcBtnFontWeight = ({ size, ...p }) => {
+const fontWeight = ({ size, ...p }) => {
   switch (size) {
     case 'xs':
     case 'extraSmall':
@@ -145,53 +145,52 @@ const calcBtnFontWeight = ({ size, ...p }) => {
   }
 };
 
-const calcBtnShadow = ({ flat, bordered, ...p }) => {
+const shadow = ({ flat, bordered, ...p }) => {
   if (flat || bordered) return 'none';
 
   return p.theme.button.shadow;
 };
 
-export const StyledButton = styled.div`
+export const Button = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: ${() => calcBtnHeight};
-  min-width: ${() => calcMinWidth};
-  max-width: ${(p) => (p.fab ? calcBtnHeight(p) : 'fit-content')};
-  background-color: ${({ bordered }) => (bordered ? 'transparent' : calcBtnBackgroundColor)};
+  height: ${() => height};
+  min-width: ${() => minWidth};
+  max-width: ${(p) => (p.fab ? height(p) : 'fit-content')};
+  background-color: ${({ bordered }) => (bordered ? 'transparent' : backgroundColor)};
 
-  border: ${({ bordered, ...p }) => (bordered ? `1.5px solid ${darken(0.1, calcBtnBackgroundColor(p))}` : 'none')};
+  border: ${({ bordered, ...p }) => (bordered ? `1.5px solid ${darken(0.1, backgroundColor(p))}` : 'none')};
 
   border-radius: ${({ fab, ...p }) => (fab ? '50%' : p.theme.button.borderRadius)};
-  box-shadow: ${() => calcBtnShadow};
+  box-shadow: ${() => shadow};
 
   cursor: ${({ disabled }) => (disabled ? 'auto' : 'pointer')};
 
   &:hover {
-    background: ${(p) => (!p.disabled ? darken(0.05, calcBtnBackgroundColor(p)) : '')};
+    background: ${(p) => (!p.disabled ? darken(0.05, backgroundColor(p)) : '')};
   }
 
   &:active {
-    background-color: ${({ raised, disabled, ...p }) =>
-      !raised && !disabled ? darken(0.1, calcBtnBackgroundColor(p)) : ''};
+    background-color: ${({ raised, disabled, ...p }) => (!raised && !disabled ? darken(0.1, backgroundColor(p)) : '')};
     box-shadow: ${({ raised }) => (raised ? '0 0 #fff' : '')};
     transform: translateY(${({ raised }) => (raised ? '1.5px' : '')});
   }
 `;
 
-export const ButtonBody = styled.span`
-  padding: ${(p) => `0 ${calcHorizontalPadding(p)}`};
-  color: ${(p) => calcFontColor('button', p)};
-  font-size: ${() => calcBtnFontSize};
-  font-weight: ${() => calcBtnFontWeight};
+export const Body = styled.span`
+  padding: ${(p) => `0 ${paddingX(p)}`};
+  color: ${(p) => fontColor('button', p)};
+  font-size: ${() => fontSize};
+  font-weight: ${() => fontWeight};
   font-family: ${({ theme: { button } }) => button.fontFamily};
   user-select: none;
 `;
 
 export const PrependIcon = styled.i`
-  padding-left: ${() => calcHorizontalPadding};
+  padding-left: ${() => paddingX};
 `;
 
 export const AppendIcon = styled.i`
-  padding-right: ${(p) => calcHorizontalPadding(p)};
+  padding-right: ${(p) => paddingX(p)};
 `;

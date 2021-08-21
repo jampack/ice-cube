@@ -26,5 +26,4 @@ const useOnClickOutside = (ref, handler) => {
   }, [ref, handler]);
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export { wrapObjectInArray, useOnClickOutside };

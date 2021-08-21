@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledButton, ButtonBody, PrependIcon, AppendIcon } from './styles';
+import { Button as StyledButton, Body, PrependIcon, AppendIcon } from './styles';
 import { wrapObjectInArray } from '../../lib/Helpers';
 
 import { RingSpinner } from '../spinners';
@@ -65,10 +65,10 @@ const Button = (props) => {
       {prependSlot && prependSlot.props.children}
       {prependIcon && <PrependIcon className={prependIcon} />}
       {prepend && prepend}
-      <ButtonBody className='ic-button-body' icon={icon} size={size}>
+      <Body className='ic-button-body' icon={icon} size={size}>
         {!loading && children}
         {loading && (loadingSpinner !== null ? loadingSpinner : <RingSpinner />)}
-      </ButtonBody>
+      </Body>
       {appendSlot && appendSlot.props.children}
       {appendIcon && <AppendIcon className={appendIcon} />}
       {append && append}

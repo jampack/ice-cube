@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-const calcSize = ({ size, ...p }) => {
-  switch (size) {
+const size = (p) => {
+  switch (p.size) {
     case 'xs':
     case 'extraSmall':
       return p.theme.spinner.ring.size.xs;
@@ -19,8 +19,8 @@ const calcSize = ({ size, ...p }) => {
   }
 };
 
-const calcBorderWidth = ({ size, ...p }) => {
-  switch (size) {
+const borderWidth = (p) => {
+  switch (p.size) {
     case 'xs':
     case 'extraSmall':
       return p.theme.spinner.ring.borderWidth.xs;
@@ -38,7 +38,7 @@ const calcBorderWidth = ({ size, ...p }) => {
   }
 };
 
-const StyledRing = styled.div`
+const Ring = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,9 +48,9 @@ const StyledRing = styled.div`
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: ${calcSize};
-    height: ${calcSize};
-    border: ${calcBorderWidth} solid;
+    width: ${size};
+    height: ${size};
+    border: ${borderWidth} solid;
     border-color: #202020 transparent transparent transparent;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
@@ -78,4 +78,4 @@ const StyledRing = styled.div`
   }
 `;
 
-export default StyledRing;
+export default Ring;
