@@ -10,10 +10,16 @@ const TextField = (props) => {
     return classes;
   };
 
-  const { value, onChange, type, outlined, underlined, filled, label, block, placeholder } = props;
+  const { value, onChange, type, outlined, underlined, filled, label, block, placeholder, disabled } = props;
 
   return (
-    <StyledTextField className={classNames()} outlined={outlined} underlined={underlined} filled={filled} block={block}>
+    <StyledTextField
+      className={classNames()}
+      outlined={outlined}
+      underlined={underlined}
+      filled={filled}
+      block={block}
+      disabled={disabled}>
       {!outlined && !underlined && !filled && <StyledLabel>{label}</StyledLabel>}
       <StyledInput
         className={`${value.length ? 'valid' : ''}`}
@@ -21,6 +27,7 @@ const TextField = (props) => {
         value={value}
         onChange={(r) => onChange(r.target.value)}
         placeholder={placeholder}
+        disabled={disabled}
       />
       {(outlined || underlined || filled) && <StyledLabelUnder>{label}</StyledLabelUnder>}
       {(underlined || filled) && <StyledBorderUnder />}
@@ -30,6 +37,7 @@ const TextField = (props) => {
 
 TextField.propTypes = {
   block: PropTypes.bool,
+  disabled: PropTypes.bool,
   filled: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func,
@@ -42,6 +50,7 @@ TextField.propTypes = {
 
 TextField.defaultProps = {
   block: false,
+  disabled: false,
   filled: false,
   label: '',
   onChange: () => {},

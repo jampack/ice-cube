@@ -97,11 +97,15 @@ export const StyledTextField = styled.div`
     font-size: ${({ theme: { textField } }) => textField.fontSize};
     font-family: ${({ theme: { textField } }) => textField.fontFamily};
     font-weight: ${({ theme: { textField } }) => textField.fontWeight};
-    color: ${calcTextFieldFontColor};
+    color: ${(p) => (p.disabled ? p.theme.textField.disabledColor : calcTextFieldFontColor)};
     background-color: ${(p) => (p.filled ? '#f0f0f0' : 'transparent')};
 
     border: ${(p) =>
-      p.underlined || p.filled ? 'none' : `${p.theme.textField.borderWidth} solid ${calcBorderColor(p)}`};
+      p.underlined || p.filled
+        ? 'none'
+        : `${p.theme.textField.borderWidth} solid ${
+            p.disabled ? p.theme.textField.disabledColor : calcBorderColor(p)
+          }`};
 
     border-bottom: ${(p) =>
       p.underlined || p.filled ? `${p.theme.textField.borderWidth} solid ${calcBorderColor(p)}` : ''};
@@ -109,6 +113,7 @@ export const StyledTextField = styled.div`
     border-radius: ${({ theme: { textField }, ...p }) => (p.underlined || p.filled ? '0' : textField.borderRadius)};
 
     outline: none;
+
     ::placeholder {
       color: ${(p) => (p.outlined || p.underlined || p.filled ? 'transparent' : calcPlaceholderColor)};
     }

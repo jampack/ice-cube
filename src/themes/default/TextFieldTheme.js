@@ -9,6 +9,7 @@ const textField = {
   borderUnderActiveColor: { dark: global.colors.primary.dark, light: global.colors.primary.light },
   borderWidth: global.borderWidth,
   defaultLabelPaddingLeft: '5px',
+  disabledColor: global.disabledColor,
   floatingLabelBackgroundColor: '#FFFFFF',
   floatingLabelMarginLeft: '9px',
   floatingLabelMarginTop: '18px',
