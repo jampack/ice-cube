@@ -1,55 +1,14 @@
 import theme from 'styled-theming';
 import styled from 'styled-components';
-
-const calcLabelTransform = ({ outlined, underlined, filled, theme: { textField } }) => {
-  if (outlined) {
-    return `scale(0.8) translateY(${textField.labelOutlinedTransformY})`;
-  }
-  if (underlined) {
-    return `scale(0.8) translateY(${textField.labelUnderLinedTransformY})`;
-  }
-  if (filled) {
-    return `scale(0.8) translateY(${textField.labelFilledTransformY})`;
-  }
-
-  return 'none';
-};
-
-const calcTextFieldFontColor = theme('mode', {
-  dark: ({ theme: { textField } }) => textField.fontColor.dark,
-  light: ({ theme: { textField } }) => textField.fontColor.light,
-});
-
-const calcLabelFontColor = theme('mode', {
-  dark: ({ theme: { textField } }) => textField.labelFontColor.dark,
-  light: ({ theme: { textField } }) => textField.labelFontColor.light,
-});
-
-const calcPlaceholderColor = theme('mode', {
-  dark: ({ theme: { textField } }) => textField.placeholderColor.dark,
-  light: ({ theme: { textField } }) => textField.placeholderColor.light,
-});
-
-const calcFloatingLabelBackgroundColor = ({ outlined, underlined, filled, ...p }) => {
-  if (outlined || underlined) {
-    return p.theme.textField.floatingLabelBackgroundColor;
-  }
-  if (filled) {
-    return 'transparent';
-  }
-
-  return 'none';
-};
-
-const calcBorderColor = theme('mode', {
-  dark: ({ theme: { textField } }) => textField.borderColor.dark,
-  light: ({ theme: { textField } }) => textField.borderColor.light,
-});
-
-const calcBorderUnderColor = theme('mode', {
-  dark: ({ theme: { textField } }) => textField.borderUnderActiveColor.dark,
-  light: ({ theme: { textField } }) => textField.borderUnderActiveColor.light,
-});
+import {
+  calcFontColor,
+  calcPlaceholderColor,
+  calcFloatingLabelBackgroundColor,
+  calcLabelTransform,
+  calcLabelFontColor,
+  calcBorderColor,
+  calcBorderUnderColor,
+} from '../../lib/CommonStyles';
 
 const calcFocusedBorderColor = theme('mode', {
   dark: ({ theme: { textField } }) => textField.focusedBorderColor.dark,
@@ -73,7 +32,7 @@ export const StyledLabelUnder = styled.span`
   font-size: ${({ theme: { textField } }) => textField.labelFontSize};
   font-family: ${({ theme: { textField } }) => textField.labelFontFamily};
   font-weight: ${({ theme: { textField } }) => textField.labelFontWeight};
-  color: ${calcLabelFontColor};
+  color: ${(p) => calcLabelFontColor('textField', p)};
 `;
 
 export const StyledLabel = styled.label`
@@ -83,7 +42,7 @@ export const StyledLabel = styled.label`
   font-size: ${({ theme: { textField } }) => textField.labelFontSize};
   font-family: ${({ theme: { textField } }) => textField.labelFontFamily};
   font-weight: ${({ theme: { textField } }) => textField.labelFontWeight};
-  color: ${calcLabelFontColor};
+  color: ${(p) => calcLabelFontColor('textField', p)};
 `;
 
 export const StyledTextField = styled.div`
@@ -97,25 +56,26 @@ export const StyledTextField = styled.div`
     font-size: ${({ theme: { textField } }) => textField.fontSize};
     font-family: ${({ theme: { textField } }) => textField.fontFamily};
     font-weight: ${({ theme: { textField } }) => textField.fontWeight};
-    color: ${(p) => (p.disabled ? p.theme.textField.disabledColor : calcTextFieldFontColor)};
+    color: ${(p) => (p.disabled ? p.theme.textField.disabledColor : calcFontColor('textField', p))};
     background-color: ${({ theme: { textField }, ...p }) => (p.filled ? '#f0f0f0' : textField.backgroundColor)};
 
     border: ${(p) =>
       p.underlined || p.filled
         ? 'none'
         : `${p.theme.textField.borderWidth} solid ${
-            p.disabled ? p.theme.textField.disabledColor : calcBorderColor(p)
+            p.disabled ? p.theme.textField.disabledColor : calcBorderColor('textField', p)
           }`};
 
     border-bottom: ${(p) =>
-      p.underlined || p.filled ? `${p.theme.textField.borderWidth} solid ${calcBorderColor(p)}` : ''};
+      p.underlined || p.filled ? `${p.theme.textField.borderWidth} solid ${calcBorderColor('textField', p)}` : ''};
 
     border-radius: ${({ theme: { textField }, ...p }) => (p.underlined || p.filled ? '0' : textField.borderRadius)};
 
     outline: none;
 
     ::placeholder {
-      color: ${(p) => (p.outlined || p.underlined || p.filled ? 'transparent' : calcPlaceholderColor)};
+      color: ${(p) => (p.outlined || p.underlined || p.filled ? 'transparent' : calcPlaceholderColor('textField', p))};
+      opacity: 1; /* Firefox */
     }
   }
 
@@ -135,22 +95,22 @@ export const StyledTextField = styled.div`
 
   ${/* sc-sel */ StyledInput}.valid + ${/* sc-sel */ StyledLabelUnder},
     ${/* sc-sel */ StyledInput}:focus + ${/* sc-sel */ StyledLabelUnder} {
-    transform: ${calcLabelTransform};
-    background: ${calcFloatingLabelBackgroundColor};
+    transform: ${(p) => calcLabelTransform('textField', p)};
+    background: ${(p) => calcFloatingLabelBackgroundColor('textField', p)};
     left: ${({ theme: { textField } }) => textField.floatingLabelMarginLeft};
     padding: 0 3px;
   }
 
   ${/* sc-sel */ StyledInput}:focus {
     &::placeholder {
-      color: ${calcPlaceholderColor};
+      color: ${(p) => calcPlaceholderColor('textField', p)};
     }
 
     ~ ${StyledBorderUnder} {
       width: 100%;
       transition: 0.3s width ease-in-out;
       height: 0;
-      border: ${(p) => (p.underlined || p.filled ? `1px solid ${calcBorderUnderColor(p)}` : 'none')};
+      border: ${(p) => (p.underlined || p.filled ? `1px solid ${calcBorderUnderColor('textField', p)}` : 'none')};
     }
   }
 

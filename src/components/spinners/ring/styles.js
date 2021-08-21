@@ -19,7 +19,7 @@ const calcSize = ({ size, ...p }) => {
   }
 };
 
-const calcBorederWidth = ({ size, ...p }) => {
+const calcBorderWidth = ({ size, ...p }) => {
   switch (size) {
     case 'xs':
     case 'extraSmall':
@@ -50,7 +50,7 @@ const StyledRing = styled.div`
     position: absolute;
     width: ${calcSize};
     height: ${calcSize};
-    border: ${calcBorederWidth} solid;
+    border: ${calcBorderWidth} solid;
     border-color: #202020 transparent transparent transparent;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;

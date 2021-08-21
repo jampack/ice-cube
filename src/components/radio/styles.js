@@ -1,11 +1,7 @@
 import theme from 'styled-theming';
 import styled from 'styled-components';
 import { darken } from 'polished';
-
-const calcFontColor = theme('mode', {
-  dark: ({ theme: { radio } }) => radio.fontColor.dark,
-  light: ({ theme: { radio } }) => radio.fontColor.light,
-});
+import { calcFontColor } from '../../lib/CommonStyles';
 
 const calcUnCheckedBorderColor = theme('mode', {
   dark: ({ theme: { radio } }) => radio.uncheckedBorderColor.dark,
@@ -44,7 +40,7 @@ export const StyledLabel = styled.label`
   font-size: ${({ theme: { radio } }) => radio.fontSize};
   font-weight: ${({ theme: { radio } }) => radio.fontWeight};
   font-family: ${({ theme: { radio } }) => radio.fontFamily};
-  color: ${(p) => (p.disabled ? p.theme.radio.disabledColor : calcFontColor)};
+  color: ${(p) => (p.disabled ? p.theme.radio.disabledColor : calcFontColor('radio', p))};
   user-select: none;
   cursor: ${(p) => (p.disabled ? 'auto' : 'pointer')};
 `;

@@ -1,6 +1,7 @@
 import theme from 'styled-theming';
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { calcFontColor } from '../../lib/CommonStyles';
 
 const _btnBackgroundColor = theme.variants('mode', 'variant', {
   default: {
@@ -31,11 +32,6 @@ const _btnBackgroundColor = theme.variants('mode', 'variant', {
     dark: (p) => p.theme.button.backgroundColor.warning.dark,
     light: (p) => p.theme.button.backgroundColor.warning.light,
   },
-});
-
-const calcBtnFontColor = theme('mode', {
-  dark: (p) => p.theme.button.fontColor.dark,
-  light: (p) => p.theme.button.fontColor.light,
 });
 
 const calcBtnHeight = ({ size, ...p }) => {
@@ -185,7 +181,7 @@ export const StyledButton = styled.div`
 
 export const ButtonBody = styled.span`
   padding: ${(p) => `0 ${calcHorizontalPadding(p)}`};
-  color: ${calcBtnFontColor};
+  color: ${(p) => calcFontColor('button', p)};
   font-size: ${() => calcBtnFontSize};
   font-weight: ${() => calcBtnFontWeight};
   font-family: ${({ theme: { button } }) => button.fontFamily};

@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 import theme from 'styled-theming';
 import { darken } from 'polished';
+import { calcFontColor } from '../../lib/CommonStyles';
 
 const calcUnCheckedBorderColor = theme('mode', {
   dark: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.dark,
   light: ({ theme: { checkbox } }) => checkbox.unCheckedBorderColor.light,
-});
-
-const calcFontColor = theme('mode', {
-  dark: ({ theme: { checkbox } }) => checkbox.fontColor.dark,
-  light: ({ theme: { checkbox } }) => checkbox.fontColor.light,
 });
 
 const calcBoxHoverColor = theme('mode', {
@@ -39,7 +35,7 @@ export const StyledLabel = styled.label`
   font-size: ${({ theme: { checkbox } }) => checkbox.fontSize};
   font-weight: ${({ theme: { checkbox } }) => checkbox.fontWeight};
   font-family: ${({ theme: { checkbox } }) => checkbox.fontFamily};
-  color: ${(p) => (p.disabled ? p.theme.checkbox.disabledColor : calcFontColor)};
+  color: ${(p) => (p.disabled ? p.theme.checkbox.disabledColor : calcFontColor('checkbox', p))};
   user-select: none;
   cursor: ${(p) => (p.disabled ? 'auto' : 'pointer')};
 `;

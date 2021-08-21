@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { StyledCheckbox } from '../checkbox/styles';
 
-// eslint-disable-next-line import/prefer-default-export
-export const StyledCheckboxGroup = styled.div`
+const StyledCheckboxGroup = styled.div`
   display: flex;
   flex-direction: ${(p) => (p.horizontal ? 'row' : 'column')};
   flex-wrap: ${(p) => (p.horizontal ? 'wrap' : '')};
@@ -11,3 +10,5 @@ export const StyledCheckboxGroup = styled.div`
     margin-right: ${(p) => (p.horizontal ? '20px' : '0')};
   }
 `;
+
+export default StyledCheckboxGroup;
