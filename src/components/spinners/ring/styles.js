@@ -53,7 +53,7 @@ const Ring = styled.div`
     border: ${borderWidth} solid;
     border-color: #202020 transparent transparent transparent;
     border-radius: 50%;
-    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: ic-circle-spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
 
   div:nth-child(1) {
@@ -68,7 +68,7 @@ const Ring = styled.div`
     animation-delay: -0.15s;
   }
 
-  @keyframes lds-ring {
+  @keyframes ic-circle-spinner {
     0% {
       transform: rotate(0deg);
     }

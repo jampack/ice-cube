@@ -1,4 +1,13 @@
 const spinner = {
+  circle: {
+    size: {
+      default: '28px',
+      lg: '32px',
+      sm: '24px',
+      xl: '36px',
+      xs: '20px',
+    },
+  },
   ring: {
     borderWidth: {
       default: '3.5px',

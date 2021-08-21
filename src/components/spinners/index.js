@@ -1,2 +1,2 @@
-// eslint-disable-next-line import/prefer-default-export
 export { default as RingSpinner } from './ring/Ring';
+export { default as CircleSpinner } from './circle/Circle';
