@@ -11,27 +11,30 @@ const Checkbox = (props) => {
   };
 
   const handleChange = () => {
-    const { onChange, value } = props;
+    const { onChange, value, disabled } = props;
+
+    if (disabled) return;
 
     onChange(!value);
   };
 
-  const { children, value, label } = props;
+  const { children, value, label, disabled } = props;
 
   return (
-    <StyledCheckbox className={classNames()} onClick={handleChange}>
-      <StyledLabel>
+    <StyledCheckbox className={classNames()} onClick={handleChange} disabled={disabled}>
+      <StyledLabel disabled={disabled}>
         {label}
         {children}
       </StyledLabel>
       <StyledInput type='checkbox' checked={value} onChange={handleChange} />
-      <StyledCheckmark />
+      <StyledCheckmark disabled={disabled} />
     </StyledCheckbox>
   );
 };
 
 Checkbox.propTypes = {
   children: PropTypes.node,
+  disabled: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.bool,
@@ -39,6 +42,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   children: '',
+  disabled: false,
   label: '',
   onChange: () => {},
   value: false,

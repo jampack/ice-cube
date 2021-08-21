@@ -12,6 +12,7 @@ const checkbox = {
   checkmarkMarginLeft: '4px',
   checkmarkMarginTop: '1px',
   checkmarkWidth: '5px',
+  disabledColor: global.disabledColor,
   fontColor: {
     dark: global.fontColor.dark,
     light: global.fontColor.light,

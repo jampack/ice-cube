@@ -24,7 +24,7 @@ const CheckboxGroup = (props) => {
     onChange(newArr);
   };
 
-  const { value, data, dataText, dataValue, horizontal } = props;
+  const { value, data, dataText, dataValue, horizontal, disabled } = props;
 
   return (
     <StyledCheckboxGroup className={classNames()} horizontal={horizontal}>
@@ -33,7 +33,8 @@ const CheckboxGroup = (props) => {
           <Checkbox
             key={d[dataValue]}
             value={value.includes(d[dataValue])}
-            onChange={(r) => handleChange(d[dataValue], r)}>
+            onChange={(r) => handleChange(d[dataValue], r)}
+            disabled={disabled}>
             {d[dataText]}
           </Checkbox>
         ))}
@@ -45,6 +46,7 @@ CheckboxGroup.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   dataText: PropTypes.string,
   dataValue: PropTypes.string,
+  disabled: PropTypes.bool,
   horizontal: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
@@ -54,6 +56,7 @@ CheckboxGroup.defaultProps = {
   data: [],
   dataText: 'label',
   dataValue: 'value',
+  disabled: false,
   horizontal: false,
   onChange: () => [],
   value: [],

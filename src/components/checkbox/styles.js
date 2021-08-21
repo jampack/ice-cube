@@ -39,9 +39,9 @@ export const StyledLabel = styled.label`
   font-size: ${({ theme: { checkbox } }) => checkbox.fontSize};
   font-weight: ${({ theme: { checkbox } }) => checkbox.fontWeight};
   font-family: ${({ theme: { checkbox } }) => checkbox.fontFamily};
-  color: ${() => calcFontColor};
+  color: ${(p) => (p.disabled ? p.theme.checkbox.disabledColor : calcFontColor)};
   user-select: none;
-  cursor: pointer;
+  cursor: ${(p) => (p.disabled ? 'auto' : 'pointer')};
 `;
 
 export const StyledCheckmark = styled.span`
@@ -50,7 +50,7 @@ export const StyledCheckmark = styled.span`
   left: 0;
   height: ${({ theme: { checkbox } }) => checkbox.boxHeight};
   width: ${({ theme: { checkbox } }) => checkbox.boxWidth};
-  border: ${(p) => `1.5px solid ${calcUnCheckedBorderColor(p)}`};
+  border: ${(p) => `1.5px solid ${p.disabled ? p.theme.checkbox.disabledColor : calcUnCheckedBorderColor(p)}`};
   border-radius: ${({ theme: { checkbox } }) => checkbox.borderRadius};
 
   &:after {
@@ -69,11 +69,11 @@ export const StyledCheckbox = styled.div`
   padding-left: ${({ theme: { checkbox } }) => checkbox.labelPaddingLeft};
   margin: ${({ theme: { checkbox } }) => `${checkbox.verticalMargin} 0`};
   width: fit-content;
-  cursor: pointer;
+  cursor: ${(p) => (p.disabled ? 'auto' : 'pointer')};
   user-select: none;
 
   &:hover ${/* sc-sel */ StyledInput} ~ ${/* sc-sel */ StyledCheckmark} {
-    border: ${(p) => `1.5px solid ${darken(0.1, calcBoxHoverColor(p))}`};
+    border: ${(p) => `${p.disabled ? 'unset' : '1.5px'} solid ${p.disabled ? '' : darken(0.1, calcBoxHoverColor(p))}`};
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark} {
