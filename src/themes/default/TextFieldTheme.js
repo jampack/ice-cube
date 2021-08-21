@@ -1,6 +1,7 @@
 import global from './Global';
 
 const textField = {
+  backgroundColor: global.inputBackgroundColor,
   borderColor: {
     dark: global.borderColor.dark,
     light: global.borderColor.light,
@@ -10,7 +11,7 @@ const textField = {
   borderWidth: global.borderWidth,
   defaultLabelPaddingLeft: '5px',
   disabledColor: global.disabledColor,
-  floatingLabelBackgroundColor: '#FFFFFF',
+  floatingLabelBackgroundColor: global.inputBackgroundColor,
   floatingLabelMarginLeft: '9px',
   floatingLabelMarginTop: '18px',
   floatingLabelPaddingX: '15px',

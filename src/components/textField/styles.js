@@ -98,7 +98,7 @@ export const StyledTextField = styled.div`
     font-family: ${({ theme: { textField } }) => textField.fontFamily};
     font-weight: ${({ theme: { textField } }) => textField.fontWeight};
     color: ${(p) => (p.disabled ? p.theme.textField.disabledColor : calcTextFieldFontColor)};
-    background-color: ${(p) => (p.filled ? '#f0f0f0' : 'transparent')};
+    background-color: ${({ theme: { textField }, ...p }) => (p.filled ? '#f0f0f0' : textField.backgroundColor)};
 
     border: ${(p) =>
       p.underlined || p.filled

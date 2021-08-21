@@ -35,6 +35,14 @@ const Select = (props) => {
     onChange(val);
   };
 
+  const handleSelectClick = () => {
+    const { disabled } = props;
+
+    if (disabled) return;
+
+    setSelect(true);
+  };
+
   const renderSelectedText = () => {
     const { data, value, dataText, dataValue } = props;
 
@@ -47,14 +55,13 @@ const Select = (props) => {
     return '';
   };
 
-  const { data, value, dataText, dataValue, outlined, underlined, block, filled, placeholder, label } = props;
-
   useOnClickOutside(
     ref,
     useCallback(() => setSelect(false), [isOpen])
   );
 
   const canShowPlaceholder = () => {
+    const { outlined, underlined, filled, value } = props;
     if (outlined || underlined || filled) {
       return isOpen && !value;
     }
@@ -62,22 +69,25 @@ const Select = (props) => {
     return !value && true;
   };
 
+  const { data, value, dataText, dataValue, outlined, underlined, block, filled, placeholder, label, disabled } = props;
+
   return (
     <StyledSelect className={classNames()} block={block}>
       {!outlined && !underlined && !filled && <StyledLabel>{label}</StyledLabel>}
       <StyledSelectContainer
         ref={ref}
         className={`${isOpen ? 'open' : ''} ${value ? 'valid' : ''}`}
-        onClick={() => setSelect(true)}
+        onClick={handleSelectClick}
         outlined={outlined}
         underlined={underlined}
-        filled={filled}>
+        filled={filled}
+        disabled={disabled}>
         <StyledSelectTrigger filled={filled}>
           {canShowPlaceholder() && (
             <StyledPlaceholder>{renderSelectedText().length > 0 ? '' : placeholder}</StyledPlaceholder>
           )}
-          <StyledSelectedItem>{renderSelectedText()}</StyledSelectedItem>
-          <StyledSelectArrow className={`${isOpen ? 'open' : ''}`} />
+          <StyledSelectedItem disabled={disabled}>{renderSelectedText()}</StyledSelectedItem>
+          <StyledSelectArrow className={`${isOpen ? 'open' : ''}`} disabled={disabled} />
         </StyledSelectTrigger>
         <StyledSelectOptions block={block}>
           {data &&
@@ -102,6 +112,7 @@ Select.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   dataText: PropTypes.string,
   dataValue: PropTypes.string,
+  disabled: PropTypes.bool,
   filled: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func,
@@ -116,6 +127,7 @@ Select.defaultProps = {
   data: [],
   dataText: 'label',
   dataValue: 'value',
+  disabled: false,
   filled: false,
   label: '',
   onChange: () => {},

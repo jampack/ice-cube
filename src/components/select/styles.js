@@ -90,7 +90,10 @@ export const StyledSelectContainer = styled.div`
   flex-direction: column;
   background-color: ${({ theme: { select } }) => select.backgroundColor};
 
-  border: ${(p) => (p.underlined || p.filled ? 'none' : `${p.theme.select.borderWidth} solid ${calcBorderColor(p)}`)};
+  border: ${(p) =>
+    p.underlined || p.filled
+      ? 'none'
+      : `${p.theme.select.borderWidth} solid ${p.disabled ? p.theme.select.disabledColor : calcBorderColor(p)}`};
 
   border-bottom: ${(p) =>
     p.underlined || p.filled ? `${p.theme.select.borderWidth} solid ${calcBorderColor(p)}` : ''};
@@ -137,6 +140,7 @@ export const StyledSelectedItem = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 10px;
+  color: ${(p) => (p.disabled ? p.theme.select.disabledColor : '')};
 `;
 
 export const StyledSelectTrigger = styled.div`
@@ -225,13 +229,13 @@ export const StyledSelectArrow = styled.div`
   ::before {
     left: -3px;
     transform: rotate(-45deg);
-    background-color: #394a6d;
+    background-color: ${(p) => (p.disabled ? p.theme.select.disabledColor : '#394a6d')};
   }
 
   ::after {
     left: 3px;
     transform: rotate(45deg);
-    background-color: #394a6d;
+    background-color: ${(p) => (p.disabled ? p.theme.select.disabledColor : '#394a6d')};
   }
 
   &.open::before {
