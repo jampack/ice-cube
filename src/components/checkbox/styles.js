@@ -77,8 +77,9 @@ export const StyledCheckbox = styled.div`
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark} {
-    background-color: ${() => calcCheckedBackgroundColor};
-    border: ${(p) => `1.5px solid ${darken(0.1, calcCheckedBorderColor(p))}`};
+    background-color: ${(p) => (p.disabled ? p.theme.checkbox.disabledColor : calcCheckedBackgroundColor)};
+    border: ${(p) =>
+      `1.5px solid ${p.disabled ? p.theme.checkbox.disabledColor : darken(0.1, calcCheckedBorderColor(p))}`};
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark}:after {

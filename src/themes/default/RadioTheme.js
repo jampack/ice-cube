@@ -12,6 +12,7 @@ const checkbox = {
   circleHeight: '20px',
   circleHoverColor: global.colors.primary,
   circleWidth: '20px',
+  disabledColor: global.disabledColor,
   fontColor: {
     dark: global.fontColor.dark,
     light: global.fontColor.light,

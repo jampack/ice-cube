@@ -23,12 +23,16 @@ const RadioGroup = (props) => {
     onChange(val);
   };
 
-  const { value, data, dataText, dataValue, horizontal } = props;
+  const { value, data, dataText, dataValue, horizontal, disabled } = props;
 
   return (
     <StyledRadioGroup className={classNames()} horizontal={horizontal}>
       {data.map((d) => (
-        <Radio key={d[dataValue]} value={value === d[dataValue]} onChange={() => handleChange(d[dataValue])}>
+        <Radio
+          key={d[dataValue]}
+          value={value === d[dataValue]}
+          onChange={() => handleChange(d[dataValue])}
+          disabled={disabled}>
           {d[dataText]}
         </Radio>
       ))}
@@ -40,6 +44,7 @@ RadioGroup.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   dataText: PropTypes.string,
   dataValue: PropTypes.string,
+  disabled: PropTypes.bool,
   horizontal: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -49,6 +54,7 @@ RadioGroup.defaultProps = {
   data: [],
   dataText: 'label',
   dataValue: 'value',
+  disabled: false,
   horizontal: false,
   onChange: () => {},
   value: null,

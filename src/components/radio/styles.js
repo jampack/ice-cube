@@ -44,9 +44,9 @@ export const StyledLabel = styled.label`
   font-size: ${({ theme: { radio } }) => radio.fontSize};
   font-weight: ${({ theme: { radio } }) => radio.fontWeight};
   font-family: ${({ theme: { radio } }) => radio.fontFamily};
-  color: ${() => calcFontColor};
+  color: ${(p) => (p.disabled ? p.theme.radio.disabledColor : calcFontColor)};
   user-select: none;
-  cursor: pointer;
+  cursor: ${(p) => (p.disabled ? 'auto' : 'pointer')};
 `;
 
 export const StyledCheckmark = styled.span`
@@ -55,7 +55,7 @@ export const StyledCheckmark = styled.span`
   left: 0;
   height: ${({ theme: { radio } }) => radio.circleHeight};
   width: ${({ theme: { radio } }) => radio.circleWidth};
-  border: ${(p) => `2px solid ${calcUnCheckedBorderColor(p)}`};
+  border: ${(p) => `2px solid ${p.disabled ? p.theme.radio.disabledColor : calcUnCheckedBorderColor(p)}`};
   border-radius: ${({ theme: { radio } }) => radio.borderRadius};
 
   &:after {
@@ -74,16 +74,17 @@ export const StyledRadio = styled.div`
   padding-left: ${({ theme: { radio } }) => radio.labelPaddingLeft};
   margin: ${({ theme: { radio } }) => `${radio.marginY} 0`};
   width: fit-content;
-  cursor: pointer;
+  cursor: ${(p) => (p.disabled ? 'auto' : 'pointer')};
   user-select: none;
 
   &:hover ${/* sc-sel */ StyledInput} ~ ${/* sc-sel */ StyledCheckmark} {
-    border: ${(p) => `2px solid ${darken(0.1, calcCircleHoverColor(p))}`};
+    border: ${(p) => `${p.disabled ? 'unset' : '2px'} solid ${p.disabled ? '' : darken(0.1, calcCircleHoverColor(p))}`};
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark} {
     background-color: ${() => calcCheckedBackgroundColor};
-    border: ${(p) => `1.5px solid ${darken(0.1, calcCheckedBorderColor(p))}`};
+    border: ${(p) =>
+      `1.5px solid ${p.disabled ? p.theme.radio.disabledColor : darken(0.1, calcCheckedBorderColor(p))}`};
   }
 
   ${/* sc-sel */ StyledInput}:checked ~ ${/* sc-sel */ StyledCheckmark}:after {
@@ -96,6 +97,6 @@ export const StyledRadio = styled.div`
     width: ${({ theme: { radio } }) => radio.checkmarkWidth};
     height: ${({ theme: { radio } }) => radio.checkmarkHeight};
     border-radius: 50%;
-    background: ${() => calcCheckedDotColor};
+    background: ${(p) => (p.disabled ? p.theme.radio.disabledColor : calcCheckedDotColor)};
   }
 `;
