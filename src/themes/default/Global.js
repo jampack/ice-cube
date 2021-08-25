@@ -18,6 +18,7 @@ const global = {
     },
   },
   disabledColor: '#dcdcdc',
+  errorColor: 'red',
   fontColor: {
     dark: '#ffffff',
     light: '#5e5e5e',

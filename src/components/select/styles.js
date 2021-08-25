@@ -68,7 +68,7 @@ export const SelectContainer = styled.div`
   &.open {
     ${BorderUnder} {
       width: 100%;
-      transition: 0.3s width ease-in-out;
+      transition: 0.3s width linear;
       height: 0;
       border: ${(p) => (p.underlined || p.filled ? `1px solid ${calcBorderUnderColor('select', p)}` : 'none')};
     }
@@ -82,7 +82,7 @@ export const SelectContainer = styled.div`
     align-items: center;
     top: 0;
     left: 0;
-    transition: all 0.2s;
+    transition: all 0.3s;
     transform-origin: 0 0;
     background: none;
     pointer-events: none;

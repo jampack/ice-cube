@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ErrorWrapper from '../errorWrapper';
+
 import { TextField as StyledTextField, Input, Label, LabelUnder, BorderUnder } from './styles';
 
 const TextField = (props) => {
@@ -10,34 +12,37 @@ const TextField = (props) => {
     return classes;
   };
 
-  const { value, onChange, type, outlined, underlined, filled, label, block, placeholder, disabled } = props;
+  const { value, onChange, type, outlined, underlined, filled, label, block, placeholder, disabled, error } = props;
 
   return (
-    <StyledTextField
-      className={classNames()}
-      outlined={outlined}
-      underlined={underlined}
-      filled={filled}
-      block={block}
-      disabled={disabled}>
-      {!outlined && !underlined && !filled && <Label>{label}</Label>}
-      <Input
-        className={`${value.length ? 'valid' : ''}`}
-        type={type}
-        value={value}
-        onChange={(r) => onChange(r.target.value)}
-        placeholder={placeholder}
-        disabled={disabled}
-      />
-      {(outlined || underlined || filled) && <LabelUnder>{label}</LabelUnder>}
-      {(underlined || filled) && <BorderUnder />}
-    </StyledTextField>
+    <ErrorWrapper message={error}>
+      <StyledTextField
+        className={classNames()}
+        outlined={outlined}
+        underlined={underlined}
+        filled={filled}
+        block={block}
+        disabled={disabled}>
+        {!outlined && !underlined && !filled && <Label>{label}</Label>}
+        <Input
+          className={`${value.length ? 'valid' : ''}`}
+          type={type}
+          value={value}
+          onChange={(r) => onChange(r.target.value)}
+          placeholder={placeholder}
+          disabled={disabled}
+        />
+        {(outlined || underlined || filled) && <LabelUnder>{label}</LabelUnder>}
+        {(underlined || filled) && <BorderUnder />}
+      </StyledTextField>
+    </ErrorWrapper>
   );
 };
 
 TextField.propTypes = {
   block: PropTypes.bool,
   disabled: PropTypes.bool,
+  error: PropTypes.oneOf([PropTypes.string, PropTypes.bool]),
   filled: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func,
@@ -51,6 +56,7 @@ TextField.propTypes = {
 TextField.defaultProps = {
   block: false,
   disabled: false,
+  error: false,
   filled: false,
   label: '',
   onChange: () => {},
