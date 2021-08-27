@@ -1,6 +1,7 @@
 import React, { useRef, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
+import ErrorWrapper from '../errorWrapper';
 import { useOnClickOutside } from '../../lib/Helpers';
 import {
   Select as StyledSelect,
@@ -69,39 +70,42 @@ const Select = (props) => {
     return !value && true;
   };
 
-  const { data, value, dataText, dataValue, outlined, underlined, block, filled, placeholder, label, disabled } = props;
+  const { data, value, dataText, dataValue, outlined, underlined, block, filled, placeholder, label, disabled, error } =
+    props;
 
   return (
-    <StyledSelect className={classNames()} block={block}>
-      {!outlined && !underlined && !filled && <Label>{label}</Label>}
-      <SelectContainer
-        ref={ref}
-        className={`${isOpen ? 'open' : ''} ${value ? 'valid' : ''}`}
-        onClick={handleSelectClick}
-        outlined={outlined}
-        underlined={underlined}
-        filled={filled}
-        disabled={disabled}>
-        <Trigger filled={filled}>
-          {canShowPlaceholder() && <Placeholder>{renderSelectedText().length > 0 ? '' : placeholder}</Placeholder>}
-          <SelectedItem disabled={disabled}>{renderSelectedText()}</SelectedItem>
-          <Arrow className={`${isOpen ? 'open' : ''}`} disabled={disabled} />
-        </Trigger>
-        <Options block={block}>
-          {data &&
-            data.map((d) => (
-              <Option
-                className={value === d[dataValue] && 'selected'}
-                key={d[dataValue]}
-                onClick={(e) => handleOptionClick(e, d[dataValue])}>
-                {d[dataText]}
-              </Option>
-            ))}
-        </Options>
-        {(outlined || underlined || filled) && <LabelUnder>{label}</LabelUnder>}
-        {(underlined || filled) && <BorderUnder />}
-      </SelectContainer>
-    </StyledSelect>
+    <ErrorWrapper message={error}>
+      <StyledSelect className={classNames()} block={block}>
+        {!outlined && !underlined && !filled && <Label>{label}</Label>}
+        <SelectContainer
+          ref={ref}
+          className={`${isOpen ? 'open' : ''} ${value ? 'valid' : ''}`}
+          onClick={handleSelectClick}
+          outlined={outlined}
+          underlined={underlined}
+          filled={filled}
+          disabled={disabled}>
+          <Trigger filled={filled}>
+            {canShowPlaceholder() && <Placeholder>{renderSelectedText().length > 0 ? '' : placeholder}</Placeholder>}
+            <SelectedItem disabled={disabled}>{renderSelectedText()}</SelectedItem>
+            <Arrow className={`${isOpen ? 'open' : ''}`} disabled={disabled} />
+          </Trigger>
+          <Options block={block}>
+            {data &&
+              data.map((d) => (
+                <Option
+                  className={value === d[dataValue] && 'selected'}
+                  key={d[dataValue]}
+                  onClick={(e) => handleOptionClick(e, d[dataValue])}>
+                  {d[dataText]}
+                </Option>
+              ))}
+          </Options>
+          {(outlined || underlined || filled) && <LabelUnder>{label}</LabelUnder>}
+          {(underlined || filled) && <BorderUnder />}
+        </SelectContainer>
+      </StyledSelect>
+    </ErrorWrapper>
   );
 };
 
@@ -111,6 +115,7 @@ Select.propTypes = {
   dataText: PropTypes.string,
   dataValue: PropTypes.string,
   disabled: PropTypes.bool,
+  error: PropTypes.oneOf([PropTypes.string, PropTypes.bool]),
   filled: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func,
@@ -126,6 +131,7 @@ Select.defaultProps = {
   dataText: 'label',
   dataValue: 'value',
   disabled: false,
+  error: false,
   filled: false,
   label: '',
   onChange: () => {},

@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import StyledRadioGroup from './styles';
+
 import Radio from '../radio';
+import ErrorWrapper from '../errorWrapper';
 
 const RadioGroup = (props) => {
   useEffect(() => {
@@ -23,20 +25,22 @@ const RadioGroup = (props) => {
     onChange(val);
   };
 
-  const { value, data, dataText, dataValue, horizontal, disabled } = props;
+  const { value, data, dataText, dataValue, horizontal, disabled, error } = props;
 
   return (
-    <StyledRadioGroup className={classNames()} horizontal={horizontal}>
-      {data.map((d) => (
-        <Radio
-          key={d[dataValue]}
-          value={value === d[dataValue]}
-          onChange={() => handleChange(d[dataValue])}
-          disabled={disabled}>
-          {d[dataText]}
-        </Radio>
-      ))}
-    </StyledRadioGroup>
+    <ErrorWrapper message={error}>
+      <StyledRadioGroup className={classNames()} horizontal={horizontal}>
+        {data.map((d) => (
+          <Radio
+            key={d[dataValue]}
+            value={value === d[dataValue]}
+            onChange={() => handleChange(d[dataValue])}
+            disabled={disabled}>
+            {d[dataText]}
+          </Radio>
+        ))}
+      </StyledRadioGroup>
+    </ErrorWrapper>
   );
 };
 
@@ -45,6 +49,7 @@ RadioGroup.propTypes = {
   dataText: PropTypes.string,
   dataValue: PropTypes.string,
   disabled: PropTypes.bool,
+  error: PropTypes.oneOf([PropTypes.string, PropTypes.bool]),
   horizontal: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -55,6 +60,7 @@ RadioGroup.defaultProps = {
   dataText: 'label',
   dataValue: 'value',
   disabled: false,
+  error: false,
   horizontal: false,
   onChange: () => {},
   value: null,
