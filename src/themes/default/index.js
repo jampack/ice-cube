@@ -4,12 +4,12 @@ import radio from './RadioTheme';
 import textField from './TextFieldTheme';
 import select from './SelectTheme';
 import spinner from './SpinnerTheme';
-import inputError from './InputErrorTheme';
+import messageWrapper from './MessageWrapperTheme';
 
 const theme = {
   button,
   checkbox,
-  inputError,
+  messageWrapper,
   radio,
   select,
   spinner,

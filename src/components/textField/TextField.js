@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ErrorWrapper from '../errorWrapper';
+import MessageWrapper from '../messageWrapper';
 
 import { TextField as StyledTextField, Input, Label, LabelUnder, BorderUnder } from './styles';
 
@@ -12,10 +12,11 @@ const TextField = (props) => {
     return classes;
   };
 
-  const { value, onChange, type, outlined, underlined, filled, label, block, placeholder, disabled, error } = props;
+  const { value, onChange, type, outlined, underlined, filled, label, block, placeholder, disabled, error, helpText } =
+    props;
 
   return (
-    <ErrorWrapper message={error}>
+    <MessageWrapper errorText={error} helpText={helpText}>
       <StyledTextField
         className={classNames()}
         outlined={outlined}
@@ -35,7 +36,7 @@ const TextField = (props) => {
         {(outlined || underlined || filled) && <LabelUnder>{label}</LabelUnder>}
         {(underlined || filled) && <BorderUnder />}
       </StyledTextField>
-    </ErrorWrapper>
+    </MessageWrapper>
   );
 };
 
@@ -44,6 +45,7 @@ TextField.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.oneOf([PropTypes.string, PropTypes.bool]),
   filled: PropTypes.bool,
+  helpText: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func,
   outlined: PropTypes.bool,
@@ -58,6 +60,7 @@ TextField.defaultProps = {
   disabled: false,
   error: false,
   filled: false,
+  helpText: null,
   label: '',
   onChange: () => {},
   outlined: false,

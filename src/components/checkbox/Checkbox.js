@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ErrorWrapper from '../errorWrapper';
+import MessageWrapper from '../messageWrapper';
 
 import { Checkbox as StyledCheckbox, Label, Input, Checkmark } from './styles';
 
@@ -20,10 +20,10 @@ const Checkbox = (props) => {
     onChange(!value);
   };
 
-  const { children, value, label, disabled, error, inGroup } = props;
+  const { children, value, label, disabled, error, inGroup, helpText } = props;
 
   return (
-    <ErrorWrapper message={error} inGroup={inGroup}>
+    <MessageWrapper errorText={error} helpText={helpText} inGroup={inGroup}>
       <StyledCheckbox className={classNames()} onClick={handleChange} disabled={disabled}>
         <Label disabled={disabled}>
           {label}
@@ -32,7 +32,7 @@ const Checkbox = (props) => {
         <Input type='checkbox' checked={value} onChange={handleChange} />
         <Checkmark disabled={disabled} />
       </StyledCheckbox>
-    </ErrorWrapper>
+    </MessageWrapper>
   );
 };
 
@@ -40,13 +40,13 @@ Checkbox.propTypes = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
   error: PropTypes.oneOf([PropTypes.string, PropTypes.bool]),
+  helpText: PropTypes.string,
+
   /* For internal user only. Hides the margin of Error message when checkbox is displayed in group to maintain styles */
   inGroup: PropTypes.bool,
 
   label: PropTypes.string,
-
   onChange: PropTypes.func,
-
   value: PropTypes.bool,
 };
 
@@ -54,6 +54,7 @@ Checkbox.defaultProps = {
   children: '',
   disabled: false,
   error: false,
+  helpText: null,
   inGroup: false,
   label: '',
   onChange: () => {},

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import StyledRadioGroup from './styles';
 
 import Radio from '../radio';
-import ErrorWrapper from '../errorWrapper';
+import MessageWrapper from '../messageWrapper';
 
 const RadioGroup = (props) => {
   useEffect(() => {
@@ -25,10 +25,10 @@ const RadioGroup = (props) => {
     onChange(val);
   };
 
-  const { value, data, dataText, dataValue, horizontal, disabled, error } = props;
+  const { value, data, dataText, dataValue, horizontal, disabled, error, helpText } = props;
 
   return (
-    <ErrorWrapper message={error}>
+    <MessageWrapper errorText={error} helpText={helpText}>
       <StyledRadioGroup className={classNames()} horizontal={horizontal}>
         {data.map((d) => (
           <Radio
@@ -40,7 +40,7 @@ const RadioGroup = (props) => {
           </Radio>
         ))}
       </StyledRadioGroup>
-    </ErrorWrapper>
+    </MessageWrapper>
   );
 };
 
@@ -50,6 +50,7 @@ RadioGroup.propTypes = {
   dataValue: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.oneOf([PropTypes.string, PropTypes.bool]),
+  helpText: PropTypes.string,
   horizontal: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -61,6 +62,7 @@ RadioGroup.defaultProps = {
   dataValue: 'value',
   disabled: false,
   error: false,
+  helpText: null,
   horizontal: false,
   onChange: () => {},
   value: null,

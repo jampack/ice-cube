@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import StyledCheckboxGroup from './styles';
 import Checkbox from '../checkbox';
-import ErrorWrapper from '../errorWrapper';
+import MessageWrapper from '../messageWrapper';
 
 const CheckboxGroup = (props) => {
   const classNames = () => {
@@ -25,10 +25,10 @@ const CheckboxGroup = (props) => {
     onChange(newArr);
   };
 
-  const { value, data, dataText, dataValue, horizontal, disabled, error } = props;
+  const { value, data, dataText, dataValue, horizontal, disabled, error, helpText } = props;
 
   return (
-    <ErrorWrapper message={error}>
+    <MessageWrapper errorText={error} helpText={helpText}>
       <StyledCheckboxGroup className={classNames()} horizontal={horizontal}>
         {data &&
           data.map((d) => (
@@ -42,7 +42,7 @@ const CheckboxGroup = (props) => {
             </Checkbox>
           ))}
       </StyledCheckboxGroup>
-    </ErrorWrapper>
+    </MessageWrapper>
   );
 };
 
@@ -52,6 +52,7 @@ CheckboxGroup.propTypes = {
   dataValue: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.oneOf([PropTypes.string, PropTypes.bool]),
+  helpText: PropTypes.string,
   horizontal: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
@@ -63,6 +64,7 @@ CheckboxGroup.defaultProps = {
   dataValue: 'value',
   disabled: false,
   error: false,
+  helpText: null,
   horizontal: false,
   onChange: () => [],
   value: [],

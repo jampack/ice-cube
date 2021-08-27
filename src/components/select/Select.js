@@ -1,7 +1,7 @@
 import React, { useRef, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import ErrorWrapper from '../errorWrapper';
+import MessageWrapper from '../messageWrapper';
 import { useOnClickOutside } from '../../lib/Helpers';
 import {
   Select as StyledSelect,
@@ -70,11 +70,24 @@ const Select = (props) => {
     return !value && true;
   };
 
-  const { data, value, dataText, dataValue, outlined, underlined, block, filled, placeholder, label, disabled, error } =
-    props;
+  const {
+    data,
+    value,
+    dataText,
+    dataValue,
+    outlined,
+    underlined,
+    block,
+    filled,
+    placeholder,
+    label,
+    disabled,
+    error,
+    helpText,
+  } = props;
 
   return (
-    <ErrorWrapper message={error}>
+    <MessageWrapper errorText={error} helpText={helpText}>
       <StyledSelect className={classNames()} block={block}>
         {!outlined && !underlined && !filled && <Label>{label}</Label>}
         <SelectContainer
@@ -105,7 +118,7 @@ const Select = (props) => {
           {(underlined || filled) && <BorderUnder />}
         </SelectContainer>
       </StyledSelect>
-    </ErrorWrapper>
+    </MessageWrapper>
   );
 };
 
@@ -117,6 +130,7 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.oneOf([PropTypes.string, PropTypes.bool]),
   filled: PropTypes.bool,
+  helpText: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func,
   outlined: PropTypes.bool,
@@ -133,6 +147,7 @@ Select.defaultProps = {
   disabled: false,
   error: false,
   filled: false,
+  helpText: null,
   label: '',
   onChange: () => {},
   outlined: false,

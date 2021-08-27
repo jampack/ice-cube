@@ -18,7 +18,7 @@ const global = {
     },
   },
   disabledColor: '#dcdcdc',
-  errorColor: 'red',
+  errorTextColor: 'red',
   fontColor: {
     dark: '#ffffff',
     light: '#5e5e5e',
@@ -26,6 +26,7 @@ const global = {
   fontFamily: "'Roboto', 'sans-serif'",
   fontSize: '14px',
   fontWeight: 400,
+  helpTextColor: '#737373',
   inputBackgroundColor: '#FFFFFF',
   inputHeight: '50px',
   inputPlaceholderColor: { dark: '#a9a9a9', light: '#a9a9a9' },
