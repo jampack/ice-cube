@@ -5,6 +5,7 @@ import textField from './TextFieldTheme';
 import select from './SelectTheme';
 import spinner from './SpinnerTheme';
 import messageWrapper from './MessageWrapperTheme';
+import textarea from './TextareaTheme';
 
 const theme = {
   button,
@@ -14,6 +15,7 @@ const theme = {
   select,
   spinner,
   textField,
+  textarea,
 };
 
 export default theme;
